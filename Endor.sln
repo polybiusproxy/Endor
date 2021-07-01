@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Endor", "Endor.vcxproj", "{F35EC792-C17F-49C9-B5C2-5A6BFDCCDA4B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{A2F976FE-8D29-4304-AA74-EAE28934DA6F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "..\Sandbox\Sandbox.vcxproj", "{A2F976FE-8D29-4304-AA74-EAE28934DA6F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Endor", "Endor\Endor.vcxproj", "{F35EC792-C17F-49C9-B5C2-5A6BFDCCDA4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
