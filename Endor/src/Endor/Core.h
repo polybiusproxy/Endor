@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef ENDR_PLATFORM_WINDOW
+#ifdef ENDR_PLATFORM_WINDOWS
 	#ifdef ENDR_BUILD_DLL
 		#define ENDOR_API __declspec(dllexport)
 	#else

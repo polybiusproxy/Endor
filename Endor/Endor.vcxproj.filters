@@ -24,6 +24,9 @@
     <ClInclude Include="src\Endor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Endor\EntryPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Endor\Application.cpp">
