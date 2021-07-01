@@ -1,9 +1,22 @@
-namespace Endor
+#include <Endor.h>
+
+class Sandbox : public Endor::Application
 {
-	_declspec(dllexport) void Print();
-}
+public:
+	Sandbox()
+	{
+	}
+
+	~Sandbox()
+	{
+	}
+};
 
 void main()
 {
-	Endor::Print();
+	// Endor::Print();
+
+	Sandbox* sandbox = new Sandbox;
+	sandbox->Run();
+	delete sandbox;
 }

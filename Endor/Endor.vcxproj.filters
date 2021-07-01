@@ -15,12 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\testlmao.h">
+    <ClInclude Include="src\Endor\Core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Endor\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Endor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\testlmao.cpp">
+    <ClCompile Include="src\Endor\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
