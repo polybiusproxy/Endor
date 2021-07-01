@@ -12,7 +12,7 @@ public:
 	}
 };
 
-void main()
+int main()
 {
 	// Endor::Print();
 
