@@ -1,0 +1,29 @@
+<xml>
+    <set name="GLFW_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/vendor/GLFW"/>
+
+    <files id='haxe'>
+        <compilerflag value='-DGLFW_INCLUDE_NONE'/>
+        <compilerflag value='-I${GLFW_PATH}/lib/'/>
+        <compilerflag value='-I${GLFW_PATH}/'/>
+    </files>
+
+    <files id='__main__'>
+        <compilerflag value='-I${GLFW_PATH}/lib/'/>
+        <compilerflag value='-I${GLFW_PATH}/'/>
+    </files>
+
+    <target id="haxe">
+        <section if="windows">
+            <flag value="-libpath:${GLFW_PATH}/lib/x32"/>
+
+            <lib name="glfw3.lib" if="ENDOR_GLFW_STATIC"/>
+
+            <section unless="ENDOR_GLFW_STATIC">
+                <compilerflag value='-DGLFW_DLL'/>
+                <lib name="glfw3dll.lib" unless="ENDOR_GLFW_STATIC"/>
+            </section>
+        </section>
+    </target>
+
+    <copyFile name="glfw3.dll" from="${GLFW_PATH}/lib/x32" unless="ENDOR_GLFW_STATIC"/>
+</xml>

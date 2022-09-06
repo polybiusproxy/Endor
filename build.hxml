@@ -1,0 +1,5 @@
+-cp src
+-D analyzer-optimize
+-main Main
+--cpp bin
+-D HXCPP_M32
