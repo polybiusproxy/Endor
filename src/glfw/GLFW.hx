@@ -18,6 +18,10 @@ extern class GLFWmonitor {}
 extern class GLFW
 {
 	static inline var GLFW_TRUE = 1;
+	static inline var GLFW_CONTEXT_VERSION_MAJOR = 0x00022002;
+	static inline var GLFW_CONTEXT_VERSION_MINOR = 0x00022003;
+	static inline var GLFW_OPENGL_PROFILE = 0x00022008;
+	static inline var GLFW_OPENGL_CORE_PROFILE = 0x00032001;
 
 	@:native("glfwInit")
 	static inline function glfwInit():Int
@@ -28,6 +32,9 @@ extern class GLFW
 
 	@:native("glfwTerminate")
 	static function glfwTerminate():Void;
+
+	@:native("glfwWindowHint")
+	static function glfwWindowHint(hint:Int, value:Int):Void;
 
 	@:native("glfwCreateWindow")
 	static function glfwCreateWindow(width:Int, height:Int, title:String, monitor:Pointer<GLFWmonitor>, share:Pointer<GLFWwindow>):Pointer<GLFWwindow>;
