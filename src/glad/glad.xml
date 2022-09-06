@@ -1,0 +1,19 @@
+<xml>
+    <set name="GLAD_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/vendor/GLAD"/>
+
+    <files id="haxe">
+        <compilerflag value='${GLAD_PATH}/include/'/>
+    </files>
+
+    <files id="__main__">
+        <cache value="1" />
+        <compilerflag value='${GLAD_PATH}/include/'/>
+        <file name='${GLAD_PATH}/src/glad.c'/>
+    </files>
+
+    <target id="haxe">
+        <section if="windows">
+            <lib name="opengl32.lib"/>
+        </section>
+    </target>
+</xml>

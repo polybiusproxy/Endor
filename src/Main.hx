@@ -1,4 +1,5 @@
 import cpp.Pointer;
+import glad.GLAD.*;
 import glfw.GLFW.*;
 import glfw.GLFW.GLFWwindow;
 
@@ -17,6 +18,8 @@ class Main
 
 		window = glfwCreateWindow(1280, 720, "Endor", null, null);
 		glfwMakeContextCurrent(window);
+
+		gladLoadGL();
 
 		while (glfwWindowShouldClose(window) != GLFW_TRUE)
 		{
