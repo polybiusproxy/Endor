@@ -19,7 +19,9 @@ class Main
 		window = glfwCreateWindow(1280, 720, "Endor", null, null);
 		glfwMakeContextCurrent(window);
 
-		gladLoadGL();
+		if (gladLoadGL() != GLFW_TRUE)
+			Sys.println("[Endor] [OpenGL] OpenGL initialization failed!");
+
 		glViewport(0, 0, 1280, 720);
 
 		while (glfwWindowShouldClose(window) != GLFW_TRUE)
