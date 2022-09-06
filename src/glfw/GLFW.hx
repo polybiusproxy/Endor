@@ -35,6 +35,9 @@ extern class GLFW
 	@:native("glfwMakeContextCurrent")
 	static function glfwMakeContextCurrent(window:Pointer<GLFWwindow>):Void;
 
+	@:native("glfwSwapBuffers")
+	static function glfwSwapBuffers(window:Pointer<GLFWwindow>):Void;
+
 	@:native("glfwWindowShouldClose")
 	static function glfwWindowShouldClose(window:Pointer<GLFWwindow>):Int;
 
