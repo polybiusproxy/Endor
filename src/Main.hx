@@ -12,10 +12,11 @@ class Main
 
 	static function main()
 	{
-    Log.trace = function(data:Dynamic, ?info:PosInfos) {
+		Log.trace = function(data:Dynamic, ?info:PosInfos)
+		{
 			Sys.println("[Endor] " + data);
-    }
-    
+		}
+
 		if (glfwInit() != GLFW_TRUE)
 		{
 			trace("[GLFW] GLFW initialization failed!");
