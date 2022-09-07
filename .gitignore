@@ -3,3 +3,7 @@ bin/
 
 # VSCode settings
 .vscode/
+
+# DS Store files are annoying
+
+.DS_Store
