@@ -1,10 +1,18 @@
 package glad;
 
+import cpp.Pointer;
+
 @:keep
 @:include("glad/glad.h")
 @:buildXml("<include name='C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/glad/glad.xml'/>")
 extern class GLAD
 {
+	static inline var GL_FALSE = 0;
+	static inline var GL_TRUE = 1;
+	static inline var GL_TRIANGLES = 0x0004;
+	static inline var GL_FLOAT = 0x1406;
+	static inline var GL_ARRAY_BUFFER = 0x8892;
+	static inline var GL_STATIC_DRAW = 0x88E4;
 	static inline var GL_FRAGMENT_SHADER = 0x8B30;
 	static inline var GL_VERTEX_SHADER = 0x8B31;
 	static inline var GL_COLOR_BUFFER_BIT = 0x00004000;
@@ -47,6 +55,31 @@ extern class GLAD
 
 	@:native("glDeleteShader")
 	static function glDeleteShader(shader:Int):Void;
+
+	@:native("glGenVertexArrays")
+	static function glGenVertexArrays(n:Int, arrays:Pointer<Int>):Void;
+
+	@:native("glBindVertexArray")
+	static function glBindVertexArray(array:Int):Void;
+
+	@:native("glVertexAttribPointer")
+	static function glVertexAttribPointer(index:Int, size:Int, type:Int, normalized:Bool, stride:Int,
+		pointer:Int /** Using the integer type because I don't see a proper translation of "const void*" **/):Void;
+
+	@:native("glEnableVertexAttribArray")
+	static function glEnableVertexAttribArray(index:Int):Void;
+
+	@:native("glDrawArrays")
+	static function glDrawArrays(mode:Int, first:Int, count:Int):Void;
+
+	@:native("glGenBuffers")
+	static function glGenBuffers(n:Int, buffers:Pointer<Int>):Void;
+
+	@:native("glBindBuffer")
+	static function glBindBuffer(target:Int, buffer:Int):Void;
+
+	@:native("glBufferData")
+	static function glBufferData(target:Int, size:Int, data:Array<Single>, usage:Int):Void;
 
 	@:native("glClear")
 	static function glClear(mask:Int):Void;
