@@ -2,6 +2,8 @@ import cpp.Pointer;
 import glad.GLAD.*;
 import glfw.GLFW.*;
 import glfw.GLFW.GLFWwindow;
+import haxe.Log;
+import haxe.PosInfos;
 
 class Main
 {
@@ -10,7 +12,14 @@ class Main
 	static function main()
 	{
 		if (glfwInit() != GLFW_TRUE)
-			Sys.println("[Endor] [GLFW] GLFW initialization failed!"); // Haxe's trace() function is slow, do NOT use it!
+			Sys.println("[Endor] [GLFW] GLFW initialization failed!");
+
+		// Overriding the default trace() function with the Sys.println() function
+		// So it doesn't slow down alot lol
+
+		Log.trace = function(data:Dynamic, ?info:PosInfos) {
+			Sys.println("[Endor] " + data);
+		}
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
