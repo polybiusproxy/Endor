@@ -18,8 +18,10 @@ extern class GLFWmonitor {}
 extern class GLFW
 {
 	static inline var GLFW_TRUE = 1;
+	static inline var GLFW_FALSE = 0;
 	static inline var GLFW_CONTEXT_VERSION_MAJOR = 0x00022002;
 	static inline var GLFW_CONTEXT_VERSION_MINOR = 0x00022003;
+	static inline var GLFW_OPENGL_DEBUG_CONTEXT = 0x00022007;
 	static inline var GLFW_OPENGL_PROFILE = 0x00022008;
 	static inline var GLFW_OPENGL_CORE_PROFILE = 0x00032001;
 
