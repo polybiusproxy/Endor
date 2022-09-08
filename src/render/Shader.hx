@@ -28,21 +28,29 @@ class Shader
 		fragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
 	}";
 
-	public function new(?vertexPath:String, ?fragmentPath:String)
+	public function new(?vertexPath:String, ?fragmentPath:String, ?file:Bool = true)
 	{
 		var vertexShader:String = "";
 		var fragmentShader:String = "";
 
 		if (vertexPath != null && fragmentPath != null)
 		{
-			try
+			if (file)
 			{
-				vertexShader = File.getContent(vertexPath + '.vs');
-				fragmentShader = File.getContent(fragmentPath + '.fs');
+				try
+				{
+					vertexShader = File.getContent(vertexPath + '.vs');
+					fragmentShader = File.getContent(fragmentPath + '.fs');
+				}
+				catch (err)
+				{
+					trace("[Endor] Couldn't load shader files!");
+				}
 			}
-			catch (err)
+			else
 			{
-				trace("[Endor] Couldn't load shader files!");
+				vertexShader = vertexPath;
+				fragmentShader = fragmentPath;
 			}
 		}
 		else
