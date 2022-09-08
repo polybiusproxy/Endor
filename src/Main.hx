@@ -58,7 +58,7 @@ class Main
 		glVertexAttribPointer(0, 3, GL_FLOAT, false, untyped __cpp__("3 * sizeof(float)"), 0);
 		glEnableVertexAttribArray(0);
 
-		var shader:Shader = new Shader("vert", "frag");
+		var shader:Shader = new Shader();
 
 		while (glfwWindowShouldClose(window) != GLFW_TRUE)
 		{

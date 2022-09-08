@@ -12,19 +12,43 @@ class Shader
 	var vertex:Int;
 	var fragment:Int;
 
-	public function new(vertexPath:String, fragmentPath:String)
+	var defaultVert = "#version 460 core
+	layout (location = 0) in vec3 aPos;
+	
+	void main()
+	{
+		gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
+	}";
+
+	var defaultFrag = "#version 460 core
+	out vec4 fragColor;
+	
+	void main()
+	{
+		fragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
+	}";
+
+	public function new(?vertexPath:String, ?fragmentPath:String)
 	{
 		var vertexShader:String = "";
 		var fragmentShader:String = "";
 
-		try
+		if (vertexPath != null && fragmentPath != null)
 		{
-			vertexShader = File.getContent(vertexPath + '.vs');
-			fragmentShader = File.getContent(fragmentPath + '.fs');
+			try
+			{
+				vertexShader = File.getContent(vertexPath + '.vs');
+				fragmentShader = File.getContent(fragmentPath + '.fs');
+			}
+			catch (err)
+			{
+				trace("[Endor] Couldn't load shader files!");
+			}
 		}
-		catch (err)
+		else
 		{
-			trace("[Endor] Couldn't load shader files!");
+			vertexShader = defaultVert;
+			fragmentShader = defaultFrag;
 		}
 
 		trace("[OpenGL] Compiling shaders...");
