@@ -28,15 +28,15 @@ class Main
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 		window = glfwCreateWindow(1280, 720, "Endor", null, null);
+
 		glfwMakeContextCurrent(window);
+		glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 
 		if (gladLoadGL() != GLFW_TRUE)
 		{
 			trace("[OpenGL] OpenGL initialization failed!");
 			Sys.exit(-1);
 		}
-
-		glViewport(0, 0, 1280, 720);
 
 		var vertices:Array<Single> = [
 			-0.5, -0.5, 0.0,
@@ -73,5 +73,10 @@ class Main
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}
+	}
+
+	static function framebufferSizeCallback(window:Pointer<GLFWwindow>, width:Int, height:Int)
+	{
+		glViewport(0, 0, width, height);
 	}
 }

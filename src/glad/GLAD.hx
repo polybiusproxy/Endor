@@ -54,7 +54,6 @@ extern class GLAD
 	@:native("glUniform1f")
 	static function glUniform1f(location:Int, v0:Float):Void;
 
-	@:native("glShaderSource")
 	static inline function glShaderSource(shader:Int, count:Int, string:ConstCharStar):Void
 	{
 		untyped __cpp__("glShaderSource({0}, {1}, &({2}), NULL)", shader, count, string);
@@ -66,7 +65,6 @@ extern class GLAD
 	@:native("glDeleteShader")
 	static function glDeleteShader(shader:Int):Void;
 
-	@:native("glGenVertexArrays")
 	static inline function glGenVertexArrays(n:Int, arrays:Array<Int>):Void
 	{
 		untyped __cpp__("glGenVertexArrays({0}, (GLuint*)&({1}[0]))", n, arrays);
@@ -85,7 +83,6 @@ extern class GLAD
 	@:native("glDrawArrays")
 	static function glDrawArrays(mode:Int, first:Int, count:Int):Void;
 
-	@:native("glGenBuffers")
 	static inline function glGenBuffers(n:Int, buffers:Array<Int>):Void
 	{
 		untyped __cpp__("glGenBuffers({0}, (GLuint*)&({1}[0]))", n, buffers);

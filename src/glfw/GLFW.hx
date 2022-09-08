@@ -1,5 +1,6 @@
 package glfw;
 
+import cpp.Function;
 import cpp.Pointer;
 
 @:keep
@@ -12,6 +13,28 @@ extern class GLFWwindow {}
 @:include("glfw3.h")
 extern class GLFWmonitor {}
 
+typedef GLFWframebuffersizefun = Pointer<GLFWwindow>->Int->Int->Void;
+
+@:keep
+class GLFWFramebufferSizeHandler
+{
+	static var cb:GLFWframebuffersizefun;
+
+	static public function callback(window:Pointer<GLFWwindow>, width:Int, height:Int)
+	{
+		if (cb != null)
+			cb(window, width, height);
+	}
+
+	public static function setCallback(func:GLFWframebuffersizefun)
+	{
+		cb = func;
+	}
+}
+
+/**
+ * Some of the code was taken from linc_glfw (ex. callbacks).
+ */
 @:keep
 @:include("glfw3.h")
 @:buildXml("<include name='C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/glfw/glfw.xml'/>")
@@ -30,6 +53,13 @@ extern class GLFW
 	{
 		forceInclude();
 		return untyped __cpp__("glfwInit()");
+	}
+
+	@:native("glfwSetFramebufferSizeCallback")
+	static inline function glfwSetFramebufferSizeCallback(window:Pointer<GLFWwindow>, callback:GLFWframebuffersizefun):Void
+	{
+		GLFWFramebufferSizeHandler.setCallback(callback);
+		untyped __global__.glfwSetFramebufferSizeCallback(window, Function.fromStaticFunction(GLFWFramebufferSizeHandler.callback));
 	}
 
 	@:native("glfwTerminate")
