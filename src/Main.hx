@@ -1,3 +1,4 @@
+import cpp.Star;
 import render.Shader;
 import cpp.Pointer;
 import glad.GLAD.*;

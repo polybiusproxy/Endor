@@ -1,5 +1,6 @@
 package glfw;
 
+import cpp.Star;
 import cpp.Function;
 import cpp.Pointer;
 
@@ -18,17 +19,19 @@ typedef GLFWframebuffersizefun = Pointer<GLFWwindow>->Int->Int->Void;
 @:keep
 class GLFWFramebufferSizeHandler
 {
-	static var cb:GLFWframebuffersizefun;
+	static var listeners = new Map<String, GLFWframebuffersizefun>();
 
-	static public function callback(window:Pointer<GLFWwindow>, width:Int, height:Int)
+	static public function nativeCallback(win:Star<GLFWwindow>, width:Int, height:Int)
 	{
+		var cb = listeners.get('win' + win);
+
 		if (cb != null)
-			cb(window, width, height);
+			cb(cast win, width, height);
 	}
 
-	public static function setCallback(func:GLFWframebuffersizefun)
+	public static function setCallback(win:Star<GLFWwindow>, func:GLFWframebuffersizefun)
 	{
-		cb = func;
+		listeners.set('win' + win, func);
 	}
 }
 
@@ -55,11 +58,10 @@ extern class GLFW
 		return untyped __cpp__("glfwInit()");
 	}
 
-	@:native("glfwSetFramebufferSizeCallback")
 	static inline function glfwSetFramebufferSizeCallback(window:Pointer<GLFWwindow>, callback:GLFWframebuffersizefun):Void
 	{
-		GLFWFramebufferSizeHandler.setCallback(callback);
-		untyped __global__.glfwSetFramebufferSizeCallback(window, Function.fromStaticFunction(GLFWFramebufferSizeHandler.callback));
+		GLFWFramebufferSizeHandler.setCallback(window.ptr, callback);
+		untyped __global__.glfwSetFramebufferSizeCallback(window, Function.fromStaticFunction(GLFWFramebufferSizeHandler.nativeCallback));
 	}
 
 	@:native("glfwTerminate")
