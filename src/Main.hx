@@ -1,11 +1,9 @@
-import cpp.Star;
+import engine.Endor;
 import render.Shader;
 import cpp.Pointer;
-import glad.GLAD.*;
-import glfw.GLFW.*;
-import glfw.GLFW.GLFWwindow;
-import haxe.Log;
-import haxe.PosInfos;
+import lib.glad.GLAD.*;
+import lib.glfw.GLFW.*;
+import lib.glfw.GLFW.GLFWwindow;
 
 class Main
 {
@@ -13,31 +11,7 @@ class Main
 
 	static function main()
 	{
-		Log.trace = function(data:Dynamic, ?info:PosInfos)
-		{
-			Sys.println("[Endor] " + data);
-		}
-
-		if (glfwInit() != GLFW_TRUE)
-		{
-			trace("[GLFW] GLFW initialization failed!");
-			Sys.exit(-1);
-		}
-
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-		window = glfwCreateWindow(1280, 720, "Endor", null, null);
-
-		glfwMakeContextCurrent(window);
-		glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
-
-		if (gladLoadGL() != GLFW_TRUE)
-		{
-			trace("[OpenGL] OpenGL initialization failed!");
-			Sys.exit(-1);
-		}
+		Endor.init([1280, 720], "Endor");
 
 		var vertices:Array<Single> = [
 			-0.5, -0.5, 0.0,
@@ -54,19 +28,19 @@ class Main
 		glBindVertexArray(VAO[0]);
 
 		glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
-		glBufferData(GL_ARRAY_BUFFER, vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, cast vertices, GL_STATIC_DRAW);
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, false, untyped __cpp__("3 * sizeof(float)"), 0);
 		glEnableVertexAttribArray(0);
 
-		var shader:Shader = new Shader();
+		var triangleShader:Shader = new Shader();
 
 		while (glfwWindowShouldClose(window) != GLFW_TRUE)
 		{
 			glClearColor(0.07, 0.13, 0.17, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			shader.use();
+			triangleShader.use();
 
 			glBindVertexArray(VAO[0]);
 			glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -74,10 +48,5 @@ class Main
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}
-	}
-
-	static function framebufferSizeCallback(window:Pointer<GLFWwindow>, width:Int, height:Int)
-	{
-		glViewport(0, 0, width, height);
 	}
 }

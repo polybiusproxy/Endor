@@ -1,4 +1,4 @@
-package glad;
+package lib.glad;
 
 import cpp.ConstCharStar;
 import cpp.Star;
@@ -6,7 +6,7 @@ import cpp.NativeArray;
 
 @:keep
 @:include("glad/glad.h")
-@:buildXml("<include name='C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/glad/glad.xml'/>")
+@:buildXml("<include name='C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/lib/glad/glad.xml'/>")
 extern class GLAD
 {
 	static inline var GL_FALSE = 0;

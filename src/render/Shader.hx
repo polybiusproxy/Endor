@@ -1,7 +1,7 @@
 package render;
 
 import cpp.ConstCharStar;
-import glad.GLAD.*;
+import lib.glad.GLAD.*;
 import sys.io.File;
 
 @:headerInclude("iostream")
