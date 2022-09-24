@@ -13,11 +13,15 @@ extern class GLAD
 	static inline var GL_TRUE = 1;
 	static inline var GL_TRIANGLES = 0x0004;
 	static inline var GL_FLOAT = 0x1406;
+	static inline var GL_VENDOR = 0x1F00;
+	static inline var GL_RENDERER = 0x1F01;
+	static inline var GL_VERSION = 0x1F02;
 	static inline var GL_DEBUG_OUTPUT_SYNCHRONOUS = 0x8242;
 	static inline var GL_ARRAY_BUFFER = 0x8892;
 	static inline var GL_STATIC_DRAW = 0x88E4;
 	static inline var GL_FRAGMENT_SHADER = 0x8B30;
 	static inline var GL_VERTEX_SHADER = 0x8B31;
+	static inline var GL_SHADING_LANGUAGE_VERSION = 0x8B8C;
 	static inline var GL_DEBUG_OUTPUT = 0x92E0;
 	static inline var GL_COLOR_BUFFER_BIT = 0x00004000;
 
@@ -29,6 +33,9 @@ extern class GLAD
 
 	@:native("glEnable")
 	static function glEnable(cap:Int):Void;
+
+	@:native("glGetString")
+	static function glGetString(name:Int):String;
 
 	@:native("glAttachShader")
 	static function glAttachShader(program:Int, shader:Int):Void;

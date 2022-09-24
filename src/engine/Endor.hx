@@ -44,6 +44,9 @@ class Endor
 		}
 
 		trace("[OpenGL] Initialized!");
+		trace("[OpenGL] Vendor: " + glGetString(GL_VENDOR) + " " + glGetString(GL_RENDERER));
+		trace("[OpenGL] GL Version: " + glGetString(GL_VERSION));
+		trace("[OpenGL] GLSL Version: " + glGetString(GL_SHADING_LANGUAGE_VERSION) + "\n");
 	}
 
 	static function framebufferSizeCallback(window:Pointer<GLFWwindow>, width:Int, height:Int)
