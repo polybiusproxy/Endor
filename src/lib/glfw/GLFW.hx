@@ -40,7 +40,7 @@ class GLFWFramebufferSizeHandler
  */
 @:keep
 @:include("glfw3.h")
-@:buildXml("<include name='C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/lib/glfw/glfw.xml'/>")
+@:buildXml("<include name='C:\\Users\\Win32\\Desktop\\Programming\\Haxe\\Endor\\src\\lib\\glfw\\glfw.xml'/>")
 extern class GLFW
 {
 	static inline var GLFW_TRUE = 1;

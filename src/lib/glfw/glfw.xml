@@ -16,7 +16,9 @@
         <section if="windows">
             <flag value="-libpath:${GLFW_PATH}/lib/x32"/>
 
-            <lib name="glfw3.lib" if="ENDOR_GLFW_STATIC"/>
+            <lib name="glfw3_mt.lib" if="ENDOR_GLFW_STATIC"/>
+            <lib name="gdi32.lib" if="ENDOR_GLFW_STATIC"/>
+            <lib name="shell32.lib" if="ENDOR_GLFW_STATIC"/>
 
             <section unless="ENDOR_GLFW_STATIC">
                 <compilerflag value='-DGLFW_DLL'/>

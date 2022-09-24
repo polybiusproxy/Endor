@@ -33,14 +33,14 @@ class Main
 		glVertexAttribPointer(0, 3, GL_FLOAT, false, untyped __cpp__("3 * sizeof(float)"), 0);
 		glEnableVertexAttribArray(0);
 
-		var triangleShader:Shader = new Shader();
+		// var triangleShader:Shader = new Shader();
 
 		while (glfwWindowShouldClose(window) != GLFW_TRUE)
 		{
 			glClearColor(0.07, 0.13, 0.17, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			triangleShader.use();
+			// triangleShader.use();
 
 			glBindVertexArray(VAO[0]);
 			glDrawArrays(GL_TRIANGLES, 0, 3);
