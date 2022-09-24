@@ -35,7 +35,10 @@ extern class GLAD
 	static function glEnable(cap:Int):Void;
 
 	@:native("glGetString")
-	static function glGetString(name:Int):String;
+	inline static function glGetString(name:Int):String
+	{
+		return untyped __cpp__("::String((const char*)glGetString({0}))", name);
+	}
 
 	@:native("glAttachShader")
 	static function glAttachShader(program:Int, shader:Int):Void;

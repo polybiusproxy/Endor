@@ -43,9 +43,11 @@ class Endor
 			Sys.exit(-1);
 		}
 
-		trace("[OpenGL] Initialized!");
-		trace("[OpenGL] Vendor: " + glGetString(GL_VENDOR) + " " + glGetString(GL_RENDERER));
-		trace("[OpenGL] GL Version: " + glGetString(GL_VERSION));
+		trace("[OpenGL] Initialized!\n");
+
+		trace("[OpenGL] Vendor: " + glGetString(GL_VENDOR));
+		trace("[OpenGL] Rendering Device: " + glGetString(GL_RENDERER));
+		trace("[OpenGL] Version: " + glGetString(GL_VERSION));
 		trace("[OpenGL] GLSL Version: " + glGetString(GL_SHADING_LANGUAGE_VERSION) + "\n");
 	}
 
