@@ -1,5 +1,7 @@
 package engine;
 
+import lib.openal.ALC.ALCdevice;
+import lib.openal.ALC.*;
 import haxe.PosInfos;
 import haxe.Log;
 import lib.glfw.GLFW.GLFWwindow;
@@ -10,6 +12,7 @@ import cpp.Pointer;
 class Endor
 {
 	public static var window:Pointer<GLFWwindow>;
+	public static var device:Pointer<ALCdevice>;
 
 	public static function init(resolution:Array<Int>, title:String)
 	{
@@ -20,9 +23,16 @@ class Endor
 
 		trace("Initializing...");
 
+		device = alcOpenDevice(null);
+		untyped __cpp__("if (!device)"); // Placeholder until I find a better way of doing this
+		{
+			trace("[OpenAL] Initialization failed!");
+			Sys.exit(-1);
+		}
+
 		if (glfwInit() != GLFW_TRUE)
 		{
-			trace("[GLFW] GLFW initialization failed!");
+			trace("[GLFW] Initialization failed!");
 			Sys.exit(-1);
 		}
 
@@ -39,7 +49,7 @@ class Endor
 
 		if (gladLoadGL() != GLFW_TRUE)
 		{
-			trace("[OpenGL] OpenGL initialization failed!");
+			trace("[OpenGL] Initialization failed!");
 			Sys.exit(-1);
 		}
 
