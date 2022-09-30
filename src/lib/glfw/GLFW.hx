@@ -1,5 +1,6 @@
 package lib.glfw;
 
+import cpp.ConstCharStar;
 import cpp.Star;
 import cpp.Function;
 import cpp.Pointer;
@@ -81,6 +82,9 @@ extern class GLFW
 
 	@:native("glfwWindowShouldClose")
 	static function glfwWindowShouldClose(window:Pointer<GLFWwindow>):Int;
+
+	@:native("glfwSetWindowTitle")
+	static function glfwSetWindowTitle(window:Pointer<GLFWwindow>, title:ConstCharStar):Void;
 
 	@:native("glfwPollEvents")
 	static function glfwPollEvents():Void;

@@ -18,6 +18,7 @@ extern class GLAD
 	static inline var GL_VERSION = 0x1F02;
 	static inline var GL_DEBUG_OUTPUT_SYNCHRONOUS = 0x8242;
 	static inline var GL_ARRAY_BUFFER = 0x8892;
+	static inline var GL_ELEMENT_ARRAY_BUFFER = 0x8893;
 	static inline var GL_STATIC_DRAW = 0x88E4;
 	static inline var GL_FRAGMENT_SHADER = 0x8B30;
 	static inline var GL_VERTEX_SHADER = 0x8B31;
