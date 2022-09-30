@@ -1,0 +1,27 @@
+<xml>
+    <set name="OPENAL_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/openal"/>
+
+    <files id='haxe'>
+        <compilerflag value='-I${OPENAL_PATH}/lib/'/>
+        <compilerflag value='-I${OPENAL_PATH}/include/'/>
+        <compilerflag value='-I${OPENAL_PATH}/'/>
+    </files>
+
+    <files id='__main__'>
+        <compilerflag value='-I${OPENAL_PATH}/lib/'/>
+        <compilerflag value='-I${OPENAL_PATH}/include/'/>
+        <compilerflag value='-I${OPENAL_PATH}/'/>
+    </files>
+
+    <target id="haxe">
+        <section if="windows">
+            <flag value="-libpath:${OPENAL_PATH}/lib/x32"/>
+
+            <section>
+                <lib name="OpenAL32.lib"/>
+            </section>
+        </section>
+    </target>
+
+    <copyFile name="soft_oal.dll" from="${OPENAL_PATH}/lib/x32"/>
+</xml>

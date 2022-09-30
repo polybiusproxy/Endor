@@ -24,7 +24,7 @@ class Endor
 		trace("Initializing...");
 
 		device = alcOpenDevice(null);
-		untyped __cpp__("if (!device)"); // Placeholder until I find a better way of doing this
+		if (device == null)
 		{
 			trace("[OpenAL] Initialization failed!");
 			Sys.exit(-1);
