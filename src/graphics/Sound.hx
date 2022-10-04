@@ -41,6 +41,34 @@ class Sound
 		var file = File.read("res/" + filename, true);
 		var wav = new Reader(file).read();
 
-		alBufferData(buffers[0], AL_FORMAT_STEREO16, wav.data.getData(), wav.data.length, wav.header.samplingRate);
+		var format:Int = switch (wav.header.channels)
+		{
+			case 1:
+				switch (wav.header.bitsPerSample)
+				{
+					case 8:
+						AL_FORMAT_MONO8;
+					case 16:
+						AL_FORMAT_MONO16;
+					default:
+						-1;
+				}
+			case 2:
+				switch (wav.header.bitsPerSample)
+				{
+					case 8:
+						AL_FORMAT_STEREO8;
+					case 16:
+						AL_FORMAT_STEREO16;
+					default:
+						-1;
+				}
+			default:
+				-1;
+		}
+
+		trace('[OpenAL] Filename: ${filename} | Channels: ${wav.header.channels} | BPS: ${wav.header.bitsPerSample} | Format: ${format}');
+
+		alBufferData(buffers[0], format, wav.data.getData(), wav.data.length, wav.header.samplingRate);
 	}
 }

@@ -23,6 +23,9 @@ extern class AL
 	static inline var AL_BUFFER = 0x1009;
 	static inline var AL_GAIN = 0x100A;
 	static inline var AL_ORIENTATION = 0x100F;
+	static inline var AL_FORMAT_MONO8 = 0x1100;
+	static inline var AL_FORMAT_MONO16 = 0x1101;
+	static inline var AL_FORMAT_STEREO8 = 0x1102;
 	static inline var AL_FORMAT_STEREO16 = 0x1103;
 
 	@:native("alGetError")
