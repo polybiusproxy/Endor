@@ -1,7 +1,9 @@
 package engine;
 
+import lib.openal.ALC.ALCcontext;
 import lib.openal.ALC.ALCdevice;
 import lib.openal.ALC.*;
+import lib.openal.AL.*;
 import haxe.PosInfos;
 import haxe.Log;
 import lib.glfw.GLFW.GLFWwindow;
@@ -12,7 +14,9 @@ import cpp.Pointer;
 class Endor
 {
 	public static var window:Pointer<GLFWwindow>;
-	public static var device:Pointer<ALCdevice>;
+
+	static var device:Pointer<ALCdevice>;
+	static var context:Pointer<ALCcontext>;
 
 	public static function init(resolution:Array<Int>, title:String)
 	{
@@ -22,13 +26,6 @@ class Endor
 		}
 
 		trace("Initializing...");
-
-		device = alcOpenDevice(null);
-		if (device == null)
-		{
-			trace("[OpenAL] Initialization failed!");
-			Sys.exit(-1);
-		}
 
 		if (glfwInit() != GLFW_TRUE)
 		{
@@ -46,6 +43,18 @@ class Endor
 
 		glfwMakeContextCurrent(window);
 		glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+
+		device = alcOpenDevice(null);
+		if (device == null)
+		{
+			trace("[OpenAL] Unable to open default device!");
+			Sys.exit(-1);
+		}
+
+		trace("[OpenAL] Device: " + alcGetString(device, ALC_DEVICE_SPECIFIER));
+
+		context = alcCreateContext(device, 0);
+		alcMakeContextCurrent(context);
 
 		if (gladLoadGL() != GLFW_TRUE)
 		{

@@ -103,11 +103,11 @@ extern class GLAD
 	static function glBindBuffer(target:Int, buffer:Int):Void;
 
 	@:native("glBufferData")
-	static function bufferData(target:Int, size:Int, data:Star<Float>, usage:Int):Void;
+	static function _bufferData(target:Int, size:Int, data:Star<Float>, usage:Int):Void;
 
 	static inline function glBufferData(target:Int, data:Array<Single>, usage:Int):Void
 	{
-		bufferData(target, data.length * untyped __cpp__("sizeof(float)"), cast NativeArray.address(data, 0), usage);
+		_bufferData(target, data.length * untyped __cpp__("sizeof(float)"), cast NativeArray.address(data, 0), usage);
 	}
 
 	@:native("glClear")

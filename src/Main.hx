@@ -1,3 +1,4 @@
+import graphics.Sound;
 import engine.Endor;
 import render.Shader;
 import lib.glad.GLAD.*;
@@ -30,6 +31,9 @@ class Main
 		glEnableVertexAttribArray(0);
 
 		var triangleShader:Shader = new Shader();
+
+		var music:Sound = new Sound("studiopolis.wav");
+		music.play();
 
 		while (glfwWindowShouldClose(Endor.window) != GLFW_TRUE)
 		{
