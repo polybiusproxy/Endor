@@ -1,0 +1,26 @@
+<xml>
+    <set name="VORBIS_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/libvorbis"/>
+
+    <files id='haxe'>
+        <compilerflag value='-I${VORBIS_PATH}/lib/'/>
+        <compilerflag value='-I${VORBIS_PATH}/include'/>
+        <compilerflag value='-I${VORBIS_PATH}/'/>
+    </files>
+
+    <files id='__main__'>
+        <compilerflag value='-I${VORBIS_PATH}/lib/'/>
+        <compilerflag value='-I${VORBIS_PATH}/include'/>
+        <compilerflag value='-I${VORBIS_PATH}/'/>
+    </files>
+
+    <target id="haxe">
+        <section if="windows">
+            <flag value="-libpath:${VORBIS_PATH}/lib/x32" unless="HXCPP_M64"/>
+            <flag value="-libpath:${VORBIS_PATH}/lib/x64" if="windows HXCPP_M64"/>
+
+            <lib name="vorbis.lib"/>
+            <lib name="vorbisenc.lib"/>
+            <lib name="vorbisfile.lib"/>
+        </section>
+    </target>
+</xml>

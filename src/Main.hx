@@ -32,7 +32,7 @@ class Main
 
 		var triangleShader:Shader = new Shader();
 
-		var music:Sound = new Sound("studiopolis.wav");
+		var music:Sound = new Sound("studiopolis");
 		music.play();
 
 		while (glfwWindowShouldClose(Endor.window) != GLFW_TRUE)

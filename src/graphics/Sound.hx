@@ -1,10 +1,7 @@
 package graphics;
 
-import haxe.io.Bytes;
-import haxe.io.BytesData;
-import format.wav.Reader;
-import sys.io.File;
 import lib.openal.AL.*;
+import sys.io.File;
 
 class Sound
 {
@@ -38,8 +35,8 @@ class Sound
 
 	function loadWAV(filename:String)
 	{
-		var file = File.read("res/" + filename, true);
-		var wav = new Reader(file).read();
+		var file = File.read("res/" + filename + ".wav", true);
+		var wav = new format.wav.Reader(file).read();
 
 		var format:Int = switch (wav.header.channels)
 		{
@@ -67,7 +64,7 @@ class Sound
 				-1;
 		}
 
-		trace('[OpenAL] Filename: ${filename} | Channels: ${wav.header.channels} | BPS: ${wav.header.bitsPerSample} | Format: ${format}');
+		trace('[OpenAL] Filename: ${filename}.wav | Channels: ${wav.header.channels} | BPS: ${wav.header.bitsPerSample}');
 
 		alBufferData(buffers[0], format, wav.data.getData(), wav.data.length, wav.header.samplingRate);
 	}
