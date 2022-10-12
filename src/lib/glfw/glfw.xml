@@ -14,7 +14,7 @@
 
     <target id="haxe">
         <section if="windows">
-            <flag value="-libpath:${GLFW_PATH}/lib/x32" unless="HXCPP_M64"/>
+            <flag value="-libpath:${GLFW_PATH}/lib/x86" unless="HXCPP_M64"/>
 
             <lib name="glfw3_mt.lib" if="ENDOR_GLFW_STATIC"/>
             <lib name="gdi32.lib" if="ENDOR_GLFW_STATIC"/>
@@ -27,5 +27,5 @@
         </section>
     </target>
 
-    <copyFile name="glfw3.dll" from="${GLFW_PATH}/lib/x32" unless="ENDOR_GLFW_STATIC"/>
+    <copyFile name="glfw3.dll" from="${GLFW_PATH}/lib/x86" unless="ENDOR_GLFW_STATIC"/>
 </xml>

@@ -1,6 +1,8 @@
 package graphics;
 
+import cpp.Pointer;
 import lib.openal.AL.*;
+import lib.vorbis.Vorbis.*;
 import sys.io.File;
 
 class Sound
@@ -24,7 +26,7 @@ class Sound
 
 		alGenBuffers(1, buffers);
 
-		loadWAV(filename);
+		loadOGG(filename);
 	}
 
 	public function play()
@@ -67,5 +69,14 @@ class Sound
 		trace('[OpenAL] Filename: ${filename}.wav | Channels: ${wav.header.channels} | BPS: ${wav.header.bitsPerSample}');
 
 		alBufferData(buffers[0], format, wav.data.getData(), wav.data.length, wav.header.samplingRate);
+	}
+
+	function loadOGG(filename:String)
+	{
+		var file = File.read("res/" + filename + ".ogg", true);
+		var vf = vb_open(file.readAll().getData());
+
+		var info = vb_info(vf);
+		trace('[libvorbis] channels: ${info.channels}');
 	}
 }

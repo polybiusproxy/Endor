@@ -15,7 +15,7 @@
 
     <target id="haxe">
         <section if="windows">
-            <flag value="-libpath:${OPENAL_PATH}/lib/x32" unless="HXCPP_M64"/>
+            <flag value="-libpath:${OPENAL_PATH}/lib/x86" unless="HXCPP_M64"/>
             <flag value="-libpath:${OPENAL_PATH}/lib/x64" if="windows HXCPP_M64"/>
 
             <section>
@@ -24,6 +24,6 @@
         </section>
     </target>
 
-    <copyFile name="soft_oal.dll" from="${OPENAL_PATH}/lib/x32" unless="HXCPP_M64"/>
+    <copyFile name="soft_oal.dll" from="${OPENAL_PATH}/lib/x86" unless="HXCPP_M64"/>
     <copyFile name="soft_oal.dll" from="${OPENAL_PATH}/lib/x64" if="windows HXCPP_M64"/>
 </xml>

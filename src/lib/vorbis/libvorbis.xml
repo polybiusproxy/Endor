@@ -1,10 +1,13 @@
 <xml>
     <set name="VORBIS_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/libvorbis"/>
+    <set name="LIB_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/lib/vorbis"/>
 
     <files id='haxe'>
         <compilerflag value='-I${VORBIS_PATH}/lib/'/>
         <compilerflag value='-I${VORBIS_PATH}/include'/>
         <compilerflag value='-I${VORBIS_PATH}/'/>
+        <compilerflag value='-I${LIB_PATH}/'/>
+        <file name='${LIB_PATH}/endor_vorbis.cpp'/>
     </files>
 
     <files id='__main__'>
@@ -15,12 +18,14 @@
 
     <target id="haxe">
         <section if="windows">
-            <flag value="-libpath:${VORBIS_PATH}/lib/x32" unless="HXCPP_M64"/>
+            <flag value="-libpath:${VORBIS_PATH}/lib/x86" unless="HXCPP_M64"/>
             <flag value="-libpath:${VORBIS_PATH}/lib/x64" if="windows HXCPP_M64"/>
 
             <lib name="vorbis.lib"/>
             <lib name="vorbisenc.lib"/>
             <lib name="vorbisfile.lib"/>
+            <lib name="ogg.lib"/>
+            <lib name="msvcrt.lib"/>
         </section>
     </target>
 </xml>

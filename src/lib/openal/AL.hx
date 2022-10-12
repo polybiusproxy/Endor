@@ -1,13 +1,10 @@
 package lib.openal;
 
 import cpp.Pointer;
-import haxe.io.UInt8Array;
 import cpp.UInt8;
 import cpp.NativeArray;
 import cpp.Star;
 import haxe.io.BytesData;
-import haxe.io.Bytes;
-import cpp.ConstCharStar;
 
 @:keep
 @:include("AL/al.h")
@@ -35,11 +32,11 @@ extern class AL
 	static function alSourcePlay(source:Int):Void;
 
 	@:native("alBufferData")
-	static function bufferData(buffer:Int, format:Int, data:Pointer<UInt8>, size:Int, freq:Int):Void;
+	static function _alBufferData(buffer:Int, format:Int, data:Pointer<UInt8>, size:Int, freq:Int):Void;
 
 	static inline function alBufferData(buffer:Int, format:Int, data:BytesData, size:Int, freq:Int):Void
 	{
-		bufferData(buffer, format, Pointer.arrayElem(data, 0), size, freq);
+		_alBufferData(buffer, format, Pointer.arrayElem(data, 0), size, freq);
 	}
 
 	@:native("alGenSources")
