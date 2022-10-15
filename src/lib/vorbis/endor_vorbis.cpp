@@ -70,6 +70,7 @@ namespace endor
             printf("[Endor] [libvorbis] Converted to Haxe format!\n");
 
             ov_clear(&vf);
+            free(rawData);
 
             return result;
         }
