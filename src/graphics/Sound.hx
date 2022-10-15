@@ -1,5 +1,6 @@
 package graphics;
 
+import haxe.io.Bytes;
 import cpp.Pointer;
 import lib.openal.AL.*;
 import lib.vorbis.Vorbis.*;
@@ -37,7 +38,7 @@ class Sound
 
 	function loadWAV(filename:String)
 	{
-		var file = File.read("res/" + filename + ".wav", true);
+		var file = File.read("res/" + filename, true);
 		var wav = new format.wav.Reader(file).read();
 
 		var format:Int = switch (wav.header.channels)
@@ -66,17 +67,23 @@ class Sound
 				-1;
 		}
 
-		trace('[OpenAL] Filename: ${filename}.wav | Channels: ${wav.header.channels} | BPS: ${wav.header.bitsPerSample}');
+		trace('[OpenAL] Filename: ${filename} | Channels: ${wav.header.channels} | BPS: ${wav.header.bitsPerSample}');
 
 		alBufferData(buffers[0], format, wav.data.getData(), wav.data.length, wav.header.samplingRate);
 	}
 
 	function loadOGG(filename:String)
 	{
-		var file = File.read("res/" + filename + ".ogg", true);
-		var vf = vb_open(file.readAll().getData());
+		var vf = vb_open("res/" + filename);
 
-		var info = vb_info(vf);
-		trace('[libvorbis] channels: ${info.channels}');
+		var ogg = vb_info(vf);
+		var oggData = vb_read(vf);
+
+		var format:Int = ogg.channels == 1 ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
+		trace('[libvorbis] Channels: ${ogg.channels} | Sampling rate: ${ogg.samplingRate}');
+		trace('[libvorbis] Audio data length: ${oggData.data.length} | Real length: ${oggData.dataLen}');
+
+		var tmp = Bytes.ofData(oggData.data); // Use this, OpenAL doesn't like cpp::VirtualArray
+		alBufferData(buffers[0], format, tmp.getData(), oggData.dataLen, ogg.samplingRate);
 	}
 }
