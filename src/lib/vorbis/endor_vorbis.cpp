@@ -2,8 +2,6 @@
 #include <vorbis/vorbisfile.h>
 #include <windows.h>
 
-#define BUFFER_SIZE 32768 // 32KB buffers
-
 namespace endor
 {
     namespace vorbis
@@ -61,13 +59,9 @@ namespace endor
                 }
             }
 
-            printf("[Endor] [libvorbis] Decoded audio file!\n");
-
             hx::Anon result = hx::Anon_obj::Create();
             result->Add(HX_CSTRING("data"), toHaxeBytes(rawData, size));
             result->Add(HX_CSTRING("dataLen"), size);
-
-            printf("[Endor] [libvorbis] Converted to Haxe format!\n");
 
             ov_clear(&vf);
             free(rawData);
@@ -79,8 +73,6 @@ namespace endor
         {
             Array<unsigned char> haxeBytes = new Array_obj<unsigned char>(length, length);
             memcpy(haxeBytes->GetBase(), bytes, length);
-
-            printf("[Endor] [libvorbis] Converted bytes!\n");
 
             return haxeBytes;
         }

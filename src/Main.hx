@@ -1,3 +1,4 @@
+import render.Model;
 import graphics.Sound;
 import engine.Endor;
 import render.Shader;
@@ -10,27 +11,20 @@ class Main
 	{
 		Endor.init([1280, 720], "Endor");
 
-		var vertices:Array<Single> = [
+		var vertices:Array<Float> = [
+			-0.5,  0.5, 0.0,
 			-0.5, -0.5, 0.0,
 			 0.5, -0.5, 0.0,
-			 0.0,  0.5, 0.0
+			 0.5,  0.5, 0.0
 		];
 
-		var VBO:Array<Int> = [];
-		var VAO:Array<Int> = [];
+		var indices:Array<Int> = [
+			0, 1, 3,
+			3, 1, 2
+		];
 
-		glGenBuffers(1, VBO);
-		glGenVertexArrays(1, VAO);
-
-		glBindVertexArray(VAO[0]);
-
-		glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
-		glBufferData(GL_ARRAY_BUFFER, cast vertices, GL_STATIC_DRAW);
-
-		glVertexAttribPointer(0, 3, GL_FLOAT, false, untyped __cpp__("3 * sizeof(float)"), 0);
-		glEnableVertexAttribArray(0);
-
-		var triangleShader:Shader = new Shader();
+		var rectangle = new Model(vertices, indices);
+		var rectangleShader:Shader = new Shader();
 
 		var music:Sound = new Sound("studiopolis.ogg");
 		music.play();
@@ -40,10 +34,12 @@ class Main
 			glClearColor(0.07, 0.13, 0.17, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			triangleShader.use();
+			rectangleShader.use();
 
-			glBindVertexArray(VAO[0]);
-			glDrawArrays(GL_TRIANGLES, 0, 3);
+			for (model in Endor.models)
+			{
+				model.render();
+			}
 
 			glfwSwapBuffers(Endor.window);
 			glfwPollEvents();

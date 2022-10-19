@@ -1,5 +1,6 @@
 package engine;
 
+import render.Model;
 import lib.openal.ALC.ALCcontext;
 import lib.openal.ALC.ALCdevice;
 import lib.openal.ALC.*;
@@ -13,6 +14,7 @@ import cpp.Pointer;
 
 class Endor
 {
+	public static var models:Array<Model> = [];
 	public static var window:Pointer<GLFWwindow>;
 
 	static var device:Pointer<ALCdevice>;

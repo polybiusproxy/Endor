@@ -12,10 +12,12 @@ extern class GLAD
 	static inline var GL_FALSE = 0;
 	static inline var GL_TRUE = 1;
 	static inline var GL_TRIANGLES = 0x0004;
+	static inline var GL_UNSIGNED_INT = 0x1405;
 	static inline var GL_FLOAT = 0x1406;
 	static inline var GL_VENDOR = 0x1F00;
 	static inline var GL_RENDERER = 0x1F01;
 	static inline var GL_VERSION = 0x1F02;
+
 	static inline var GL_DEBUG_OUTPUT_SYNCHRONOUS = 0x8242;
 	static inline var GL_ARRAY_BUFFER = 0x8892;
 	static inline var GL_ELEMENT_ARRAY_BUFFER = 0x8893;
@@ -93,6 +95,8 @@ extern class GLAD
 
 	@:native("glDrawArrays")
 	static function glDrawArrays(mode:Int, first:Int, count:Int):Void;
+	@:native("glDrawElements")
+	static function glDrawElements(mode:Int, count:Int, type:Int, indices:Int /** No pointers here, this isn't used anyways **/):Void;
 
 	static inline function glGenBuffers(n:Int, buffers:Array<Int>):Void
 	{

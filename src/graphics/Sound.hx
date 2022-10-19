@@ -1,7 +1,7 @@
 package graphics;
 
+import haxe.io.Path;
 import haxe.io.Bytes;
-import cpp.Pointer;
 import lib.openal.AL.*;
 import lib.vorbis.Vorbis.*;
 import sys.io.File;
@@ -23,11 +23,17 @@ class Sound
 		alSourcef(sources[0], AL_GAIN, 1);
 		alSource3f(sources[0], AL_POSITION, 0, 0, 0);
 		alSource3f(sources[0], AL_VELOCITY, 0, 0, 0);
-		alSourcei(sources[0], AL_LOOPING, AL_FALSE);
+		alSourcei(sources[0], AL_LOOPING, AL_TRUE);
 
 		alGenBuffers(1, buffers);
 
-		loadOGG(filename);
+		switch (Path.extension(filename))
+		{
+			case "wav":
+				loadWAV(filename);
+			case "ogg":
+				loadOGG(filename);
+		}
 	}
 
 	public function play()
@@ -81,7 +87,6 @@ class Sound
 
 		var format:Int = ogg.channels == 1 ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
 		trace('[libvorbis] Channels: ${ogg.channels} | Sampling rate: ${ogg.samplingRate}');
-		trace('[libvorbis] Audio data length: ${oggData.data.length} | Real length: ${oggData.dataLen}');
 
 		var tmp = Bytes.ofData(oggData.data); // Use this, OpenAL doesn't like cpp::VirtualArray
 		alBufferData(buffers[0], format, tmp.getData(), oggData.dataLen, ogg.samplingRate);
