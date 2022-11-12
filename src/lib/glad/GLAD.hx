@@ -87,8 +87,12 @@ extern class GLAD
 	static function glBindVertexArray(array:Int):Void;
 
 	@:native("glVertexAttribPointer")
-	static function glVertexAttribPointer(index:Int, size:Int, type:Int, normalized:Bool, stride:Int,
-		pointer:Int /** Using the integer type because I don't see a proper translation of "const void*" **/):Void;
+	static inline function glVertexAttribPointer(index:Int, size:Int, type:Int, normalized:Bool, stride:Int,
+			pointer:Int /** Using the integer type because I don't see a proper translation of "const void*" **/):Void
+	{
+		untyped __cpp__("glVertexAttribPointer({0}, {1}, {2}, {3}, (GLsizei)({4} * sizeof(float)), (const void*)({5} * sizeof(float)))", index, size, type,
+			normalized, stride, pointer);
+	}
 
 	@:native("glEnableVertexAttribArray")
 	static function glEnableVertexAttribArray(index:Int):Void;

@@ -23,10 +23,17 @@ class Main
 			1, 2, 3
 		];
 
+		var colors:Array<Float> = [
+			1.0, 0.0, 0.0,
+			0.0, 1.0, 0.0,
+			0.0, 0.0, 1.0,
+			1.0, 1.0, 1.0
+		];
+
 		var rectangle = new Model(vertices, indices);
 		var rectangleShader:Shader = new Shader();
 
-		var music:Sound = new Sound("hip_shop.ogg"); // I love Deltarune
+		var music:Sound = new Sound("a_cybers_world.ogg"); // I love Deltarune and Undertale
 		music.play();
 
 		while (glfwWindowShouldClose(Endor.window) != GLFW_TRUE)

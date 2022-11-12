@@ -24,7 +24,7 @@ class Model
 		else
 			vertexCount = Std.int(vertices.length / 3);
 
-		glGenBuffers(1, VBO);
+		glGenBuffers(2, VBO);
 		glGenVertexArrays(1, VAO);
 
 		glBindVertexArray(VAO[0]);
@@ -40,8 +40,11 @@ class Model
 			glBufferData_int(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW);
 		}
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, false, untyped __cpp__("3 * sizeof(float)"), 0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, false, 6, 0);
 		glEnableVertexAttribArray(0);
+
+		glVertexAttribPointer(1, 3, GL_FLOAT, false, 6, 3);
+		glEnableVertexAttribArray(1);
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindVertexArray(0);
