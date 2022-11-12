@@ -26,7 +26,7 @@ class Main
 		var rectangle = new Model(vertices, indices);
 		var rectangleShader:Shader = new Shader();
 
-		var music:Sound = new Sound("studiopolis.ogg");
+		var music:Sound = new Sound("hip_shop.ogg"); // I love Deltarune
 		music.play();
 
 		while (glfwWindowShouldClose(Endor.window) != GLFW_TRUE)
