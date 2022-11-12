@@ -11,5 +11,6 @@ Currently the engine is possible of loading/compiling shaders, playing sound, an
 - [x] Basic renderer.
 - [x] Shader system.
 - [x] Audio system.
-- [ ] Batch renderer.
+- [x] Batch renderer.
+- [ ] Indexed drawing.
 - [ ] Code refactoring.

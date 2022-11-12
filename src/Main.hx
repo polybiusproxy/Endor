@@ -12,15 +12,15 @@ class Main
 		Endor.init([1280, 720], "Endor");
 
 		var vertices:Array<Float> = [
-			-0.5,  0.5, 0.0,
-			-0.5, -0.5, 0.0,
+			 0.5,  0.5, 0.0,
 			 0.5, -0.5, 0.0,
-			 0.5,  0.5, 0.0
+			-0.5, -0.5, 0.0,
+			-0.5,  0.5, 0.0
 		];
 
 		var indices:Array<Int> = [
 			0, 1, 3,
-			3, 1, 2
+			1, 2, 3
 		];
 
 		var rectangle = new Model(vertices, indices);

@@ -12,6 +12,7 @@ class Model
 
 	public var VBO:Array<Int> = [];
 	public var VAO:Array<Int> = [];
+	public var EBO:Array<Int> = [];
 
 	public function new(vertices:Array<Float>, ?indices:Array<Int>)
 	{
@@ -28,14 +29,22 @@ class Model
 
 		glBindVertexArray(VAO[0]);
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, VBO[0]);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, cast indices, GL_STATIC_DRAW);
-
 		glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
 		glBufferData(GL_ARRAY_BUFFER, cast vertices, GL_STATIC_DRAW);
 
+		if (hasIndices)
+		{
+			glGenBuffers(1, EBO);
+
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[0]);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, cast indices, GL_STATIC_DRAW);
+		}
+
 		glVertexAttribPointer(0, 3, GL_FLOAT, false, untyped __cpp__("3 * sizeof(float)"), 0);
 		glEnableVertexAttribArray(0);
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
 
 		Endor.models.push(this);
 	}
@@ -45,7 +54,9 @@ class Model
 		glBindVertexArray(VAO[0]);
 
 		if (hasIndices)
+		{
 			glDrawElements(GL_TRIANGLES, vertexCount, GL_UNSIGNED_INT, 0);
+		}
 		else
 			glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 	}
