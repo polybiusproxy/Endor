@@ -37,7 +37,7 @@ class Model
 			glGenBuffers(1, EBO);
 
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[0]);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, cast indices, GL_STATIC_DRAW);
+			glBufferData_int(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW);
 		}
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, false, untyped __cpp__("3 * sizeof(float)"), 0);

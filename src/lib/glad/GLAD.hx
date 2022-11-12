@@ -114,6 +114,11 @@ extern class GLAD
 		_bufferData(target, data.length * untyped __cpp__("sizeof(float)"), cast NativeArray.address(data, 0), usage);
 	}
 
+	static inline function glBufferData_int(target:Int, data:Array<Int>, usage:Int):Void
+	{
+		_bufferData(target, data.length * untyped __cpp__("sizeof(float)"), cast NativeArray.address(data, 0), usage);
+	}
+
 	@:native("glClear")
 	static function glClear(mask:Int):Void;
 
