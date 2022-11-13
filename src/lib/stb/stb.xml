@@ -1,0 +1,16 @@
+<xml>
+    <set name="STB_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/stb"/>
+    <set name="LIB_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/lib/stb"/>
+
+    <files id='haxe'>
+        <compilerflag value='-I${STB_PATH}/include'/>
+        <compilerflag value='-I${STB_PATH}/'/>
+        <compilerflag value='-I${LIB_PATH}/'/>
+        <file name='${LIB_PATH}/endor_stb_image.cpp'/>
+    </files>
+
+    <files id='__main__'>
+        <compilerflag value='-I${STB_PATH}/include'/>
+        <compilerflag value='-I${STB_PATH}/'/>
+    </files>
+</xml>

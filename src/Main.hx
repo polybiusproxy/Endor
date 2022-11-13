@@ -11,6 +11,7 @@ class Main
 	{
 		Endor.init([1280, 720], "Endor");
 
+		/** vertices (x3), colors (x3) **/
 		var vertices:Array<Float> = [
 			 0.5,  0.5, 0.0, 1.0, 0.0, 0.0,
 			 0.5, -0.5, 0.0, 0.0, 1.0, 0.0,
@@ -21,13 +22,6 @@ class Main
 		var indices:Array<Int> = [
 			0, 1, 3,
 			1, 2, 3
-		];
-
-		var colors:Array<Float> = [
-			1.0, 0.0, 0.0,
-			0.0, 1.0, 0.0,
-			0.0, 0.0, 1.0,
-			1.0, 1.0, 1.0
 		];
 
 		var rectangle = new Model(vertices, indices);

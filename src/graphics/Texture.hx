@@ -1,0 +1,3 @@
+package graphics;
+
+class Texture {}

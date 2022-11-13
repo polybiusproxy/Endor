@@ -1,6 +1,5 @@
 package lib.vorbis;
 
-import cpp.Pointer;
 import haxe.io.BytesData;
 
 typedef Vorbis_Info =

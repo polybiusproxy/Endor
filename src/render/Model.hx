@@ -24,7 +24,7 @@ class Model
 		else
 			vertexCount = Std.int(vertices.length / 3);
 
-		glGenBuffers(2, VBO);
+		glGenBuffers(1, VBO);
 		glGenVertexArrays(1, VAO);
 
 		glBindVertexArray(VAO[0]);

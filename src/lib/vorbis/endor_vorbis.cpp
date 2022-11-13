@@ -28,7 +28,7 @@ namespace endor
 
             hx::Anon result = hx::Anon_obj::Create();
             result->Add(HX_CSTRING("channels"), vi->channels);
-            result->Add(HX_CSTRING("samplingRate"), vi->rate);
+            result->Add(HX_CSTRING("samplingRate"), (int)vi->rate);
 
             return result;
         }
@@ -61,7 +61,7 @@ namespace endor
 
             hx::Anon result = hx::Anon_obj::Create();
             result->Add(HX_CSTRING("data"), toHaxeBytes(rawData, size));
-            result->Add(HX_CSTRING("dataLen"), size);
+            result->Add(HX_CSTRING("dataLen"), (int)size);
 
             ov_clear(&vf);
             free(rawData);
