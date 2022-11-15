@@ -14,8 +14,16 @@ class Texture
 
 		glGenTextures(1, ID);
 		glBindTexture(GL_TEXTURE_2D, ID[0]);
-		glTexImage2D(GL_TEXTURE_2D, 0, /** TODO: Add GL_RGB **/ 0, image.width, image.height, 0, /** TODO: Add GL_RGB **/
-			0, /** TODO: Add GL_UNSIGNED_BYTE **/ 0, image.data);
 
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image.width, image.height, 0, GL_RGB, GL_UNSIGNED_BYTE, image.data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+		model.textures.push(this);
 	}
 }

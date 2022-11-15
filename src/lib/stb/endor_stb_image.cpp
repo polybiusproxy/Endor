@@ -8,9 +8,12 @@ namespace endor
     namespace stb_image
     {
         Array<unsigned char> toHaxeBytes(unsigned char *bytes, int length);
+        Dynamic toImageData(int width, int height, int channels, Array<unsigned char> data);
 
         Dynamic load(::String filename, int req_comp)
         {
+            stbi_set_flip_vertically_on_load(true);
+
             int width, height, channels;
             unsigned char *data = stbi_load(filename, &width, &height, &channels, req_comp);
 

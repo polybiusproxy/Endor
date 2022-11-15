@@ -27,7 +27,7 @@ class Main
 
 		var rectangle = new Model(vertices, indices);
 		var rectangleShader:Shader = new Shader();
-		var rectangleTexture:Texture = new Texture(rectangle, "test.png");
+		var rectangleTexture:Texture = new Texture(rectangle, "test2.jpg");
 
 		var music:Sound = new Sound("a_cybers_world.ogg"); // I love Deltarune and Undertale
 		music.play();

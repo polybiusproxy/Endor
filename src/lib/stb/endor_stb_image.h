@@ -10,6 +10,6 @@ namespace endor
 {
     namespace stb_image
     {
-        extern Dynamic load(::String filename);
+        extern Dynamic load(::String filename, int req_comp);
     }
 }

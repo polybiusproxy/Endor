@@ -14,12 +14,20 @@ extern class GLAD
 	static inline var GL_TRUE = 1;
 	static inline var GL_TRIANGLES = 0x0004;
 	static inline var GL_TEXTURE_2D = 0x0DE1;
+	static inline var GL_UNSIGNED_BYTE = 0x1401;
 	static inline var GL_UNSIGNED_INT = 0x1405;
 	static inline var GL_FLOAT = 0x1406;
+	static inline var GL_RGB = 0x1907;
 	static inline var GL_VENDOR = 0x1F00;
 	static inline var GL_RENDERER = 0x1F01;
 	static inline var GL_VERSION = 0x1F02;
-
+	static inline var GL_LINEAR = 0x2601;
+	static inline var GL_LINEAR_MIPMAP_LINEAR = 0x2703;
+	static inline var GL_TEXTURE_MAG_FILTER = 0x2800;
+	static inline var GL_TEXTURE_MIN_FILTER = 0x2801;
+	static inline var GL_TEXTURE_WRAP_S = 0x2802;
+	static inline var GL_TEXTURE_WRAP_T = 0x2803;
+	static inline var GL_REPEAT = 0x2901;
 	static inline var GL_DEBUG_OUTPUT_SYNCHRONOUS = 0x8242;
 	static inline var GL_ARRAY_BUFFER = 0x8892;
 	static inline var GL_ELEMENT_ARRAY_BUFFER = 0x8893;
@@ -107,7 +115,7 @@ extern class GLAD
 
 	static inline function glGenTextures(n:Int, textures:Array<Int>):Void
 	{
-		untyped __cpp__("glGenTextures({0}, (GLuint*)&({1}[0]))", n, buffers);
+		untyped __cpp__("glGenTextures({0}, (GLuint*)&({1}[0]))", n, textures);
 	}
 
 	@:native("glBindTexture")
@@ -116,9 +124,15 @@ extern class GLAD
 	static inline function glTexImage2D(target:Int, level:Int, internalFormat:Int, width:Int, height:Int, border:Int, format:Int, type:Int,
 			data:BytesData):Void
 	{
-		untyped __cpp__("glTexImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (const void*)({8}[0]))", target, level, internalFormat, width, height, border,
+		untyped __cpp__("glTexImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (const void*)&({8}[0]))", target, level, internalFormat, width, height, border,
 			format, type, data);
 	}
+
+	@:native("glGenerateMipmap")
+	static function glGenerateMipmap(target:Int):Void;
+
+	@:native("glTexParameteri")
+	static function glTexParameteri(target:Int, pname:Int, param:Int):Void;
 
 	static inline function glGenBuffers(n:Int, buffers:Array<Int>):Void
 	{

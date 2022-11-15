@@ -1,5 +1,6 @@
 package render;
 
+import graphics.Texture;
 import engine.Endor;
 import lib.glad.GLAD.*;
 
@@ -13,6 +14,8 @@ class Model
 	public var VBO:Array<Int> = [];
 	public var VAO:Array<Int> = [];
 	public var EBO:Array<Int> = [];
+
+	public var textures:Array<Texture> = [];
 
 	public function new(vertices:Array<Float>, ?indices:Array<Int>)
 	{
@@ -58,6 +61,11 @@ class Model
 	public function render()
 	{
 		glBindVertexArray(VAO[0]);
+
+		for (texture in textures)
+		{
+			glBindTexture(GL_TEXTURE_2D, texture.ID[0]);
+		}
 
 		if (hasIndices)
 		{
