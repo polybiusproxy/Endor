@@ -1,5 +1,6 @@
 package lib.glad;
 
+import haxe.io.BytesData;
 import cpp.ConstCharStar;
 import cpp.Star;
 import cpp.NativeArray;
@@ -12,6 +13,7 @@ extern class GLAD
 	static inline var GL_FALSE = 0;
 	static inline var GL_TRUE = 1;
 	static inline var GL_TRIANGLES = 0x0004;
+	static inline var GL_TEXTURE_2D = 0x0DE1;
 	static inline var GL_UNSIGNED_INT = 0x1405;
 	static inline var GL_FLOAT = 0x1406;
 	static inline var GL_VENDOR = 0x1F00;
@@ -99,8 +101,24 @@ extern class GLAD
 
 	@:native("glDrawArrays")
 	static function glDrawArrays(mode:Int, first:Int, count:Int):Void;
+
 	@:native("glDrawElements")
 	static function glDrawElements(mode:Int, count:Int, type:Int, indices:Int /** No pointers here, this isn't used anyways **/):Void;
+
+	static inline function glGenTextures(n:Int, textures:Array<Int>):Void
+	{
+		untyped __cpp__("glGenTextures({0}, (GLuint*)&({1}[0]))", n, buffers);
+	}
+
+	@:native("glBindTexture")
+	static function glBindTexture(target:Int, texture:Int):Void;
+
+	static inline function glTexImage2D(target:Int, level:Int, internalFormat:Int, width:Int, height:Int, border:Int, format:Int, type:Int,
+			data:BytesData):Void
+	{
+		untyped __cpp__("glTexImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (const void*)({8}[0]))", target, level, internalFormat, width, height, border,
+			format, type, data);
+	}
 
 	static inline function glGenBuffers(n:Int, buffers:Array<Int>):Void
 	{

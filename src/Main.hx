@@ -1,3 +1,4 @@
+import graphics.Texture;
 import render.Model;
 import graphics.Sound;
 import engine.Endor;
@@ -11,12 +12,12 @@ class Main
 	{
 		Endor.init([1280, 720], "Endor");
 
-		/** vertices (x3), colors (x3) **/
+		/** vertices (x3), colors (x3), tex coords (x2) **/
 		var vertices:Array<Float> = [
-			 0.5,  0.5, 0.0, 1.0, 0.0, 0.0,
-			 0.5, -0.5, 0.0, 0.0, 1.0, 0.0,
-			-0.5, -0.5, 0.0, 0.0, 0.0, 1.0,
-			-0.5,  0.5, 0.0, 1.0, 1.0, 1.0
+			 0.5,  0.5, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0,
+			 0.5, -0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0,
+			-0.5, -0.5, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+			-0.5,  0.5, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0
 		];
 
 		var indices:Array<Int> = [
@@ -26,6 +27,7 @@ class Main
 
 		var rectangle = new Model(vertices, indices);
 		var rectangleShader:Shader = new Shader();
+		var rectangleTexture:Texture = new Texture(rectangle, "test.png");
 
 		var music:Sound = new Sound("a_cybers_world.ogg"); // I love Deltarune and Undertale
 		music.play();

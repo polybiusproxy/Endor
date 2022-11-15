@@ -15,22 +15,29 @@ class Shader
 	var defaultVert = "#version 460 core
 	layout (location = 0) in vec3 aPos;
 	layout (location = 1) in vec3 aColor;
+	layout (location = 2) in vec2 aTexCoord;
 
 	out vec3 color;
+	out vec2 texCoord;
 	
 	void main()
 	{
 		color = aColor;
+		texCoord = aTexCoord;
 		gl_Position = vec4(aPos, 1.0);
 	}";
 
 	var defaultFrag = "#version 460 core
-	in vec3 color;
 	out vec4 fragColor;
+
+	in vec3 color;
+	in vec2 texCoord;
+
+	uniform sampler2D tex;
 	
 	void main()
 	{
-		fragColor = vec4(color, 1.0f);
+		fragColor = texture(tex, texCoord) * vec4(color, 1.0);
 	}";
 
 	public function new(?vertexPath:String, ?fragmentPath:String, ?file:Bool = true)
