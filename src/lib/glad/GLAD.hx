@@ -18,6 +18,7 @@ extern class GLAD
 	static inline var GL_UNSIGNED_INT = 0x1405;
 	static inline var GL_FLOAT = 0x1406;
 	static inline var GL_RGB = 0x1907;
+	static inline var GL_RGBA = 0x1908;
 	static inline var GL_VENDOR = 0x1F00;
 	static inline var GL_RENDERER = 0x1F01;
 	static inline var GL_VERSION = 0x1F02;
@@ -88,9 +89,9 @@ extern class GLAD
 	@:native("glDeleteShader")
 	static function glDeleteShader(shader:Int):Void;
 
-	static inline function glGenVertexArrays(n:Int, arrays:Array<Int>):Void
+	static inline function glGenVertexArrays(n:Int, arrays:Int):Void
 	{
-		untyped __cpp__("glGenVertexArrays({0}, (GLuint*)&({1}[0]))", n, arrays);
+		untyped __cpp__("glGenVertexArrays({0}, (GLuint*)&({1}))", n, arrays);
 	}
 
 	@:native("glBindVertexArray")
@@ -113,9 +114,9 @@ extern class GLAD
 	@:native("glDrawElements")
 	static function glDrawElements(mode:Int, count:Int, type:Int, indices:Int /** No pointers here, this isn't used anyways **/):Void;
 
-	static inline function glGenTextures(n:Int, textures:Array<Int>):Void
+	static inline function glGenTextures(n:Int, textures:Int):Void
 	{
-		untyped __cpp__("glGenTextures({0}, (GLuint*)&({1}[0]))", n, textures);
+		untyped __cpp__("glGenTextures({0}, (GLuint*)&({1}))", n, textures);
 	}
 
 	@:native("glBindTexture")
@@ -134,9 +135,9 @@ extern class GLAD
 	@:native("glTexParameteri")
 	static function glTexParameteri(target:Int, pname:Int, param:Int):Void;
 
-	static inline function glGenBuffers(n:Int, buffers:Array<Int>):Void
+	static inline function glGenBuffers(n:Int, buffers:Int):Void
 	{
-		untyped __cpp__("glGenBuffers({0}, (GLuint*)&({1}[0]))", n, buffers);
+		untyped __cpp__("glGenBuffers({0}, (GLuint*)&({1}))", n, buffers);
 	}
 
 	@:native("glBindBuffer")

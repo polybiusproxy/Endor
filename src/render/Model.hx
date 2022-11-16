@@ -11,13 +11,13 @@ class Model
 
 	public var hasIndices:Bool;
 
-	public var VBO:Array<Int> = [];
-	public var VAO:Array<Int> = [];
-	public var EBO:Array<Int> = [];
+	public var VBOs:Array<Int> = [];
+	public var VAOs:Array<Int> = [];
+	public var EBOs:Array<Int> = [];
 
 	public var textures:Array<Texture> = [];
 
-	public function new(vertices:Array<Float>, ?indices:Array<Int>)
+	public function new(vertices:Array<Float>, ?indices:Array<Int>, ?colors:Array<Float>, ?texCoords:Array<Float>)
 	{
 		if (indices != null)
 			hasIndices = true;
@@ -27,32 +27,62 @@ class Model
 		else
 			vertexCount = Std.int(vertices.length / 3);
 
-		glGenBuffers(1, VBO);
+		var VAO:Int = 0;
+
 		glGenVertexArrays(1, VAO);
+		glBindVertexArray(VAO);
+		VAOs.push(VAO);
 
-		glBindVertexArray(VAO[0]);
+		var vertexVBO:Int = 0;
+		var colorVBO:Int = 0;
+		var texCoordVBO:Int = 0;
 
-		glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
+		var indexEBO:Int = 0;
+
+		glGenBuffers(1, vertexVBO);
+		glGenBuffers(1, colorVBO);
+		glGenBuffers(1, texCoordVBO);
+
+		VBOs.push(vertexVBO);
+		VBOs.push(colorVBO);
+		VBOs.push(texCoordVBO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
 		glBufferData(GL_ARRAY_BUFFER, cast vertices, GL_STATIC_DRAW);
+
+		glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		if (hasIndices)
 		{
-			glGenBuffers(1, EBO);
+			glGenBuffers(1, indexEBO);
+			EBOs.push(indexEBO);
 
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[0]);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEBO);
 			glBufferData_int(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW);
 		}
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, false, 8, 0);
-		glEnableVertexAttribArray(0);
+		if (colors != null)
+		{
+			glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
+			glBufferData(GL_ARRAY_BUFFER, cast colors, GL_STATIC_DRAW);
 
-		glVertexAttribPointer(1, 3, GL_FLOAT, false, 8, 3);
-		glEnableVertexAttribArray(1);
+			glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);
+			glEnableVertexAttribArray(1);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+		}
 
-		glVertexAttribPointer(2, 2, GL_FLOAT, false, 8, 6);
-		glEnableVertexAttribArray(2);
+		if (texCoords != null)
+		{
+			glBindBuffer(GL_ARRAY_BUFFER, texCoordVBO);
+			glBufferData(GL_ARRAY_BUFFER, cast texCoords, GL_STATIC_DRAW);
 
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+			glVertexAttribPointer(2, 2, GL_FLOAT, false, 0, 0);
+			glEnableVertexAttribArray(2);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+		}
+
 		glBindVertexArray(0);
 
 		Endor.models.push(this);
@@ -60,11 +90,14 @@ class Model
 
 	public function render()
 	{
-		glBindVertexArray(VAO[0]);
+		for (VAO in VAOs)
+		{
+			glBindVertexArray(VAO);
+		}
 
 		for (texture in textures)
 		{
-			glBindTexture(GL_TEXTURE_2D, texture.ID[0]);
+			glBindTexture(GL_TEXTURE_2D, texture.ID);
 		}
 
 		if (hasIndices)
