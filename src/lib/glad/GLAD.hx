@@ -1,5 +1,6 @@
 package lib.glad;
 
+import glm.Mat4;
 import haxe.io.BytesData;
 import cpp.ConstCharStar;
 import cpp.Star;
@@ -7,16 +8,21 @@ import cpp.NativeArray;
 
 @:keep
 @:include("glad/glad.h")
-@:buildXml("<include name='C:\\Users\\Win32\\Desktop\\Programming\\Haxe\\Endor\\src\\lib\\glad\\glad.xml'/>")
+@:buildXml("<include name='E:\\Users\\Win32\\Desktop\\Programming\\Haxe\\Endor\\src\\lib\\glad\\glad.xml'/>")
 extern class GLAD
 {
 	static inline var GL_FALSE = 0;
 	static inline var GL_TRUE = 1;
 	static inline var GL_TRIANGLES = 0x0004;
+	inline static var GL_SRC_ALPHA = 0x0302;
+	inline static var GL_ONE_MINUS_SRC_ALPHA = 0x0303;
+	inline static var GL_BLEND = 0x0BE2;
+	static inline var GL_UNPACK_ALIGNMENT = 0x0CF5;
 	static inline var GL_TEXTURE_2D = 0x0DE1;
 	static inline var GL_UNSIGNED_BYTE = 0x1401;
 	static inline var GL_UNSIGNED_INT = 0x1405;
 	static inline var GL_FLOAT = 0x1406;
+	static inline var GL_RED = 0x1903;
 	static inline var GL_RGB = 0x1907;
 	static inline var GL_RGBA = 0x1908;
 	static inline var GL_VENDOR = 0x1F00;
@@ -29,6 +35,7 @@ extern class GLAD
 	static inline var GL_TEXTURE_WRAP_S = 0x2802;
 	static inline var GL_TEXTURE_WRAP_T = 0x2803;
 	static inline var GL_REPEAT = 0x2901;
+	static inline var GL_CLAMP_TO_EDGE = 0x812F;
 	static inline var GL_DEBUG_OUTPUT_SYNCHRONOUS = 0x8242;
 	static inline var GL_ARRAY_BUFFER = 0x8892;
 	static inline var GL_ELEMENT_ARRAY_BUFFER = 0x8893;
@@ -47,6 +54,12 @@ extern class GLAD
 
 	@:native("glEnable")
 	static function glEnable(cap:Int):Void;
+
+	@:native("glPixelStorei")
+	static function glPixelStorei(pname:Int, param:Int):Void;
+
+	@:native('glBlendFunc')
+	static function glBlendFunc(sfactor:Int, dfactor:Int):Void;
 
 	@:native("glGetString")
 	inline static function glGetString(name:Int):String
@@ -77,6 +90,14 @@ extern class GLAD
 
 	@:native("glUniform1f")
 	static function glUniform1f(location:Int, v0:Float):Void;
+
+	@:native('glUniform3f')
+	static function glUniform3f(location:Int, v0:cpp.Float32, v1:cpp.Float32, v2:cpp.Float32):Void;
+
+	inline static function glUniformMatrix4fv(location:Int, count:Int, transpose:Bool, value:Mat4):Void
+	{
+		untyped __cpp__("glUniformMatrix4fv({0}, {1}, {2}, (const GLfloat*)&({3}[0]))", location, count, transpose, value.toFloatArray());
+	}
 
 	static inline function glShaderSource(shader:Int, count:Int, string:ConstCharStar):Void
 	{
@@ -122,6 +143,9 @@ extern class GLAD
 	@:native("glBindTexture")
 	static function glBindTexture(target:Int, texture:Int):Void;
 
+	@:native("glActiveTexture")
+	static function glActiveTexture(texture:Int):Void;
+
 	static inline function glTexImage2D(target:Int, level:Int, internalFormat:Int, width:Int, height:Int, border:Int, format:Int, type:Int,
 			data:BytesData):Void
 	{
@@ -144,14 +168,11 @@ extern class GLAD
 	static function glBindBuffer(target:Int, buffer:Int):Void;
 
 	@:native("glBufferData")
+	@:noCompletion
 	static function _bufferData(target:Int, size:Int, data:Star<Float>, usage:Int):Void;
 
-	static inline function glBufferData(target:Int, data:Array<Single>, usage:Int):Void
-	{
-		_bufferData(target, data.length * untyped __cpp__("sizeof(float)"), cast NativeArray.address(data, 0), usage);
-	}
-
-	static inline function glBufferData_int(target:Int, data:Array<Int>, usage:Int):Void
+	// i love undocumented haxe features, dont you love using features that are barely documented and pray for them to work
+	static inline function glBufferData<T>(target:Int, data:Array<T> /** arg must be Array<Single> **/, usage:Int):Void
 	{
 		_bufferData(target, data.length * untyped __cpp__("sizeof(float)"), cast NativeArray.address(data, 0), usage);
 	}

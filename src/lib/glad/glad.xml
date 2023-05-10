@@ -1,5 +1,5 @@
 <xml>
-    <set name="GLAD_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/glad"/>
+    <set name="GLAD_PATH" value="E:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/glad"/>
 
     <files id="haxe">
         <compilerflag value='-I${GLAD_PATH}/include/'/>
