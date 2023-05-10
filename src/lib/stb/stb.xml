@@ -1,6 +1,6 @@
 <xml>
-    <set name="STB_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/stb"/>
-    <set name="LIB_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/lib/stb"/>
+    <set name="STB_PATH" value="E:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/stb"/>
+    <set name="LIB_PATH" value="E:/Users/Win32/Desktop/Programming/Haxe/Endor/src/lib/stb"/>
 
     <files id='haxe'>
         <compilerflag value='-I${STB_PATH}/include'/>
