@@ -1,10 +1,10 @@
 package engine;
 
+import render.Shader;
 import render.Model;
 import lib.openal.ALC.ALCcontext;
 import lib.openal.ALC.ALCdevice;
 import lib.openal.ALC.*;
-import lib.openal.AL.*;
 import haxe.PosInfos;
 import haxe.Log;
 import lib.glfw.GLFW.GLFWwindow;
@@ -15,6 +15,8 @@ import cpp.Pointer;
 class Endor
 {
 	public static var models:Array<Model> = [];
+	public static var shaders:Array<Shader> = [];
+
 	public static var window:Pointer<GLFWwindow>;
 
 	static var device:Pointer<ALCdevice>;
@@ -64,12 +66,12 @@ class Endor
 			Sys.exit(-1);
 		}
 
-		trace("[OpenGL] Initialized!\n");
+		trace("[OpenGL] Initialized!");
 
 		trace("[OpenGL] Vendor: " + glGetString(GL_VENDOR));
 		trace("[OpenGL] Rendering Device: " + glGetString(GL_RENDERER));
 		trace("[OpenGL] Version: " + glGetString(GL_VERSION));
-		trace("[OpenGL] GLSL Version: " + glGetString(GL_SHADING_LANGUAGE_VERSION) + "\n");
+		trace("[OpenGL] GLSL Version: " + glGetString(GL_SHADING_LANGUAGE_VERSION));
 	}
 
 	static function framebufferSizeCallback(window:Pointer<GLFWwindow>, width:Int, height:Int)

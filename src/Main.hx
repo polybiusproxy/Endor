@@ -50,7 +50,10 @@ class Main
 			glClearColor(0.07, 0.13, 0.17, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			rectangleShader.use();
+			for (shader in Endor.shaders)
+			{
+				shader.use();
+			}
 
 			for (model in Endor.models)
 			{

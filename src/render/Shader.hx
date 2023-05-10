@@ -1,5 +1,8 @@
 package render;
 
+import glm.Vec3;
+import glm.Mat4;
+import engine.Endor;
 import cpp.ConstCharStar;
 import lib.glad.GLAD.*;
 import sys.io.File;
@@ -91,6 +94,8 @@ class Shader
 		glLinkProgram(ID);
 		checkErrors(ID, "PROGRAM");
 
+		Endor.shaders.push(this);
+
 		glDeleteShader(vertex);
 		glDeleteShader(fragment);
 	}
@@ -102,17 +107,32 @@ class Shader
 
 	public function setBool(name:String, value:Bool)
 	{
+		glUseProgram(ID);
 		glUniform1i(glGetUniformLocation(ID, name), cast value);
 	}
 
 	public function setInt(name:String, value:Int)
 	{
+		glUseProgram(ID);
 		glUniform1i(glGetUniformLocation(ID, name), value);
 	}
 
 	public function setFloat(name:String, value:Float)
 	{
+		glUseProgram(ID);
 		glUniform1f(glGetUniformLocation(ID, name), value);
+	}
+
+	public function setVec3(name:String, value:Vec3)
+	{
+		glUseProgram(ID);
+		glUniform3f(glGetUniformLocation(ID, name), value.x, value.y, value.z);
+	}
+
+	public function setMat4(name:String, value:Mat4)
+	{
+		glUseProgram(ID);
+		glUniformMatrix4fv(glGetUniformLocation(ID, name), 1, false, value);
 	}
 
 	@:functionCode('
