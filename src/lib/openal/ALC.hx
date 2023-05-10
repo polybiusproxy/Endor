@@ -15,7 +15,7 @@ extern class ALCcontext {}
 
 @:keep
 @:include("AL/alc.h")
-@:buildXml("<include name='C:\\Users\\Win32\\Desktop\\Programming\\Haxe\\Endor\\src\\lib\\openal\\al.xml'/>")
+@:buildXml("<include name='E:\\Users\\Win32\\Desktop\\Programming\\Haxe\\Endor\\src\\lib\\openal\\al.xml'/>")
 extern class ALC
 {
 	static inline var ALC_DEVICE_SPECIFIER = 0x1005;

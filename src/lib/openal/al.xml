@@ -1,5 +1,5 @@
 <xml>
-    <set name="OPENAL_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/openal"/>
+    <set name="OPENAL_PATH" value="E:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/openal"/>
 
     <files id='haxe'>
         <compilerflag value='-I${OPENAL_PATH}/lib/'/>
