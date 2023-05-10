@@ -1,6 +1,6 @@
 <xml>
-    <set name="VORBIS_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/libvorbis"/>
-    <set name="LIB_PATH" value="C:/Users/Win32/Desktop/Programming/Haxe/Endor/src/lib/vorbis"/>
+    <set name="VORBIS_PATH" value="E:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/libvorbis"/>
+    <set name="LIB_PATH" value="E:/Users/Win32/Desktop/Programming/Haxe/Endor/src/lib/vorbis"/>
 
     <files id='haxe'>
         <compilerflag value='-I${VORBIS_PATH}/lib/'/>
