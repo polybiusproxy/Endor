@@ -10,7 +10,7 @@ class Texture
 
 	public function new(model:Model, filename:String, req_comp:Int = 0)
 	{
-		var image = Image.load("res/" + filename, req_comp);
+		var image = Image.load("res/images/" + filename, req_comp);
 
 		glGenTextures(1, ID);
 		glBindTexture(GL_TEXTURE_2D, ID);
