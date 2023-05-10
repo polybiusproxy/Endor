@@ -44,7 +44,7 @@ class Sound
 
 	function loadWAV(filename:String)
 	{
-		var file = File.read("res/" + filename, true);
+		var file = File.read("res/audio/" + filename, true);
 		var wav = new format.wav.Reader(file).read();
 
 		var format:Int = switch (wav.header.channels)
@@ -80,13 +80,13 @@ class Sound
 
 	function loadOGG(filename:String)
 	{
-		var vf = vb_open("res/" + filename);
+		var vf = vb_open("res/audio/" + filename);
 
 		var ogg = vb_info(vf);
 		var oggData = vb_read(vf);
 
 		var format:Int = ogg.channels == 1 ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
-		trace('[OpenAL] Filename: ${filename} | Channels: ${ogg.channels} | Sampling rate: ${ogg.samplingRate}');
+		trace('[OpenAL] Filename: ${filename} | Channels: ${ogg.channels} | Sampling rate: ${ogg.samplingRate} Hz');
 
 		var tmp = Bytes.ofData(oggData.data); // Use this, OpenAL doesn't like cpp::VirtualArray
 		alBufferData(buffers[0], format, tmp.getData(), oggData.dataLen, ogg.samplingRate);
