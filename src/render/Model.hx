@@ -48,7 +48,7 @@ class Model
 		VBOs.push(texCoordVBO);
 
 		glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
-		glBufferData(GL_ARRAY_BUFFER, cast vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, vertices, GL_STATIC_DRAW);
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
 		glEnableVertexAttribArray(0);
@@ -60,13 +60,13 @@ class Model
 			EBOs.push(indexEBO);
 
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEBO);
-			glBufferData_int(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW);
 		}
 
 		if (colors != null)
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
-			glBufferData(GL_ARRAY_BUFFER, cast colors, GL_STATIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, colors, GL_STATIC_DRAW);
 
 			glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);
 			glEnableVertexAttribArray(1);
@@ -76,7 +76,7 @@ class Model
 		if (texCoords != null)
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, texCoordVBO);
-			glBufferData(GL_ARRAY_BUFFER, cast texCoords, GL_STATIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, texCoords, GL_STATIC_DRAW);
 
 			glVertexAttribPointer(2, 2, GL_FLOAT, false, 0, 0);
 			glEnableVertexAttribArray(2);
