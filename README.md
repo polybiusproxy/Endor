@@ -2,8 +2,8 @@
 
 A 3D game engine made with Haxe and C++.
 
-Currently the engine is possible of loading/compiling shaders, playing sound, and rendering basic vertices.
-![image](https://user-images.githubusercontent.com/47796739/201512214-7c1b6bb2-0d06-4d6a-91c5-53d3093de904.png)
+Currently the engine is possible of loading/compiling shaders, loading textures, playing sound, and rendering basic vertices.
+![image](https://github.com/polybiusproxy/Endor/assets/47796739/cb7e59e9-069c-4b21-84b3-b72dc4ad5639)
 
 
 ## Roadmap
