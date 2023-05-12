@@ -1,7 +1,8 @@
 package graphics;
 
-import lib.glad.GLAD.*;
 import render.Model;
+import render.Shader;
+import lib.glad.GLAD.*;
 import lib.stb.Image;
 
 class Texture
@@ -24,6 +25,6 @@ class Texture
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width, image.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image.data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 
-		model.textures.push(this);
+		model.setTexture(this);
 	}
 }

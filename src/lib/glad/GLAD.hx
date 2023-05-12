@@ -172,7 +172,13 @@ extern class GLAD
 	static function _bufferData(target:Int, size:Int, data:Star<Float>, usage:Int):Void;
 
 	// i love undocumented haxe features, dont you love using features that are barely documented and pray for them to work
-	static inline function glBufferData<T>(target:Int, data:Array<T> /** arg must be Array<Single> **/, usage:Int):Void
+	static inline function glBufferData(target:Int, data:Array<Float>, usage:Int):Void
+	{
+		var tmp:Array<Single> = cast data;
+		_bufferData(target, tmp.length * untyped __cpp__("sizeof(float)"), cast NativeArray.address(tmp, 0), usage);
+	}
+
+	static inline function glBufferData_int(target:Int, data:Array<Int>, usage:Int):Void
 	{
 		_bufferData(target, data.length * untyped __cpp__("sizeof(float)"), cast NativeArray.address(data, 0), usage);
 	}

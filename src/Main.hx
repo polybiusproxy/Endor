@@ -38,8 +38,9 @@ class Main
 			0.0, 1.0
 		];
 
-		var rectangle = new Model(vertices, indices, colors, texCoords);
 		var rectangleShader:Shader = new Shader();
+
+		var rectangle = new Model(vertices, indices, colors, texCoords, rectangleShader);
 		var rectangleTexture:Texture = new Texture(rectangle, "awesomeface.png");
 
 		var music:Sound = new Sound("a_cybers_world.ogg"); // I love Deltarune and Undertale

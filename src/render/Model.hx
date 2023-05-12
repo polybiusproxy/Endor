@@ -2,6 +2,7 @@ package render;
 
 import graphics.Texture;
 import engine.Endor;
+import render.Shader;
 import lib.glad.GLAD.*;
 
 class Model
@@ -17,7 +18,9 @@ class Model
 
 	public var textures:Array<Texture> = [];
 
-	public function new(vertices:Array<Float>, ?indices:Array<Int>, ?colors:Array<Float>, ?texCoords:Array<Float>)
+	public var shader:Shader;
+
+	public function new(vertices:Array<Float>, ?indices:Array<Int>, ?colors:Array<Float>, ?texCoords:Array<Float>, shader:Shader)
 	{
 		if (indices != null)
 			hasIndices = true;
@@ -27,58 +30,61 @@ class Model
 		else
 			vertexCount = Std.int(vertices.length / 3);
 
-		var VAO:Int = 0;
+		this.shader = shader;
 
+		var VAO:Int = 0;
 		glGenVertexArrays(1, VAO);
 		glBindVertexArray(VAO);
 		VAOs.push(VAO);
 
 		var vertexVBO:Int = 0;
-		var colorVBO:Int = 0;
-		var texCoordVBO:Int = 0;
-
-		var indexEBO:Int = 0;
-
 		glGenBuffers(1, vertexVBO);
-		glGenBuffers(1, colorVBO);
-		glGenBuffers(1, texCoordVBO);
-
 		VBOs.push(vertexVBO);
-		VBOs.push(colorVBO);
-		VBOs.push(texCoordVBO);
 
 		glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
 		glBufferData(GL_ARRAY_BUFFER, vertices, GL_STATIC_DRAW);
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
+		// position attribute
+		glVertexAttribPointer(0, 3, GL_FLOAT, false, 3, 0);
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
+		var indexEBO:Int = 0;
+
 		if (hasIndices)
 		{
+			// Indices EBO
 			glGenBuffers(1, indexEBO);
 			EBOs.push(indexEBO);
 
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexEBO);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW);
+			glBufferData_int(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW);
 		}
+
+		var colorVBO:Int = 0;
+		glGenBuffers(1, colorVBO);
+		VBOs.push(colorVBO);
 
 		if (colors != null)
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
 			glBufferData(GL_ARRAY_BUFFER, colors, GL_STATIC_DRAW);
 
-			glVertexAttribPointer(1, 3, GL_FLOAT, false, 0, 0);
+			glVertexAttribPointer(1, 3, GL_FLOAT, false, 3, 0);
 			glEnableVertexAttribArray(1);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
+
+		var texCoordVBO:Int = 0;
+		glGenBuffers(1, texCoordVBO);
+		VBOs.push(texCoordVBO);
 
 		if (texCoords != null)
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, texCoordVBO);
 			glBufferData(GL_ARRAY_BUFFER, texCoords, GL_STATIC_DRAW);
 
-			glVertexAttribPointer(2, 2, GL_FLOAT, false, 0, 0);
+			glVertexAttribPointer(2, 2, GL_FLOAT, false, 2, 0);
 			glEnableVertexAttribArray(2);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
@@ -86,6 +92,12 @@ class Model
 		glBindVertexArray(0);
 
 		Endor.models.push(this);
+	}
+
+	public function setTexture(texture:Texture) 
+	{
+    	shader.setInt("tex", texture.ID);
+		textures.push(texture);
 	}
 
 	public function render()
