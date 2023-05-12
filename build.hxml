@@ -4,5 +4,6 @@
 --library hxcpp-debug-server
 --library haxe-glm
 --library format
+--library hxtelemetry
 --cpp bin
 -D HXCPP_M64

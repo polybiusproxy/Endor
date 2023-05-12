@@ -9,3 +9,5 @@ Currently the engine is possible of loading/compiling shaders, loading textures,
 * format  
 * haxe-glm
   > Use the git repository, the haxelib version is outdated.
+* hxtelemetry
+  > Use the git repository, the haxelib version is outdated.

@@ -1,3 +1,7 @@
+#if HXCPP_TELEMETRY
+import hxtelemetry.HxTelemetry;
+#end
+
 import graphics.Texture;
 import render.Model;
 import graphics.Sound;
@@ -11,6 +15,10 @@ class Main
 	static function main()
 	{
 		Endor.init([1280, 720], "Endor");
+		
+		#if HXCPP_TELEMETRY
+		var hxt = new hxtelemetry.HxTelemetry();
+		#end
 
 		var vertices:Array<Float> = [
 			 0.5,  0.5, 0.0,
@@ -63,6 +71,10 @@ class Main
 
 			glfwSwapBuffers(Endor.window);
 			glfwPollEvents();
+
+			#if HXCPP_TELEMETRY
+			hxt.advance_frame();
+			#end
 		}
 	}
 }
