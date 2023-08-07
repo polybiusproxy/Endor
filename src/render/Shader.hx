@@ -59,7 +59,7 @@ class Shader
 				}
 				catch (err)
 				{
-					trace("[Endor] Couldn't load shader files!");
+					trace("[endor] [shader] Couldn't load shader files!");
 				}
 			}
 			else
@@ -74,7 +74,7 @@ class Shader
 			fragmentShader = defaultFrag;
 		}
 
-		trace("[OpenGL] Compiling shaders...");
+		trace("[shader] Compiling shaders...");
 
 		vertex = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(vertex, 1, vertexShader);
@@ -86,7 +86,7 @@ class Shader
 		glCompileShader(fragment);
 		checkErrors(fragment, "FRAGMENT");
 
-		trace("[OpenGL] Compiling programs...");
+		trace("[shader] Compiling programs...");
 
 		ID = glCreateProgram();
 		glAttachShader(ID, vertex);
@@ -146,7 +146,7 @@ class Shader
             if (!success)
             {
                 glGetShaderInfoLog(shader, 1024, NULL, infoLog);
-                std::cout << "[Endor] [OpenGL] Compile error of type: " << type << std::endl << infoLog << std::endl << " -- --------------------------------------------------- -- " << std::endl;
+                std::cout << "[opengl] [shader] Compile error of type: " << type << std::endl << infoLog << std::endl << " -- --------------------------------------------------- -- " << std::endl;
             }
         }
         else
@@ -156,7 +156,7 @@ class Shader
             if (!success)
             {
                 glGetProgramInfoLog(shader, 1024, NULL, infoLog);
-                std::cout << "[Endor] [OpenGL] Link error of type: " << type << std::endl << infoLog << std::endl << " -- --------------------------------------------------- -- " << std::endl;
+                std::cout << "[endor] [shader] Link error of type: " << type << std::endl << infoLog << std::endl << " -- --------------------------------------------------- -- " << std::endl;
             }
         }
     ')

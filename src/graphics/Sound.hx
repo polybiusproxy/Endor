@@ -73,7 +73,7 @@ class Sound
 				-1;
 		}
 
-		trace('[OpenAL] Filename: ${filename} | Channels: ${wav.header.channels} | Sampling rate: ${wav.header.samplingRate} Hz');
+		trace('[sound] Filename: ${filename} | Channels: ${wav.header.channels} | Sampling rate: ${wav.header.samplingRate} Hz');
 
 		alBufferData(buffers[0], format, wav.data.getData(), wav.data.length, wav.header.samplingRate);
 	}
@@ -86,7 +86,7 @@ class Sound
 		var oggData = vb_read(vf);
 
 		var format:Int = ogg.channels == 1 ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
-		trace('[OpenAL] Filename: ${filename} | Channels: ${ogg.channels} | Sampling rate: ${ogg.samplingRate} Hz');
+		trace('[sound] Filename: ${filename} | Channels: ${ogg.channels} | Sampling rate: ${ogg.samplingRate} Hz');
 
 		var tmp = Bytes.ofData(oggData.data); // Use this, OpenAL doesn't like cpp::VirtualArray
 		alBufferData(buffers[0], format, tmp.getData(), oggData.dataLen, ogg.samplingRate);

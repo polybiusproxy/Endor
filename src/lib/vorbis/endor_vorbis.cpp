@@ -18,7 +18,7 @@ namespace endor
 
             if (ov_open_callbacks(fp, &vf, NULL, 0, OV_CALLBACKS_NOCLOSE) < 0)
             {
-                printf("[Endor] [libvorbis] Invalid OggVorbis stream\n");
+                printf("[endor] [libvorbis] Invalid OggVorbis stream!\n");
                 exit(-1);
             }
 
@@ -41,7 +41,7 @@ namespace endor
             vorbis_info *vi = ov_info(&vf, -1);
             ogg_int64_t dataLen = ov_pcm_total(&vf, -1) * vi->channels * 2;
 
-            printf("[Endor] [libvorbis] Allocating %" PRIu64 " bytes...\n", dataLen);
+            printf("[endor] [libvorbis] Allocating %" PRIu64 " bytes...\n", dataLen);
 
             unsigned char *rawData = new unsigned char[dataLen];
 
@@ -53,7 +53,7 @@ namespace endor
 
                 if (result < 0)
                 {
-                    printf("[Endor] [libvorbis] FAULTY OGG FILE");
+                    printf("[endor] [libvorbis] Faulty Vorbis file!");
                     exit(-1);
                 }
                 else

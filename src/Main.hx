@@ -43,7 +43,7 @@ class Main
 		var rectangle = new Model(vertices, indices, colors, texCoords, rectangleShader);
 		var rectangleTexture:Texture = new Texture(rectangle, "tro.png");
 
-		var music:Sound = new Sound("something_about_us.ogg");
+		var music:Sound = new Sound("09.ogg");
 		music.play();
 
 		while (glfwWindowShouldClose(Endor.window) != GLFW_TRUE)

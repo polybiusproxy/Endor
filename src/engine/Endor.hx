@@ -43,18 +43,18 @@ class Endor
 
 		Log.trace = function(data:Dynamic, ?info:PosInfos)
 		{
-			Sys.println("[Endor] " + data);
+			Sys.println("[endor] " + data);
 		}
 
-		trace("Initializing...");
+		trace("[engine] Initializing...");
 
 		if (glfwInit() != GLFW_TRUE)
 		{
-			trace("[GLFW] Initialization failed!");
+			trace("[glfw] Initialization failed!");
 			Sys.exit(-1);
 		}
 
-		trace("[GLFW] Initialized!");
+		trace("[glfw] Initialized!");
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -68,27 +68,29 @@ class Endor
 		device = alcOpenDevice(null);
 		if (device == null)
 		{
-			trace("[OpenAL] Unable to open default device!");
+			trace("[openal] Unable to open default device!");
 			Sys.exit(-1);
 		}
 
-		trace("[OpenAL] Device: " + alcGetString(device, ALC_DEFAULT_ALL_DEVICES_SPECIFIER));
+		trace("[openal] Device: " + alcGetString(device, ALC_DEFAULT_ALL_DEVICES_SPECIFIER));
 
 		context = alcCreateContext(device, 0);
 		alcMakeContextCurrent(context);
 
 		if (gladLoadGL() != GLFW_TRUE)
 		{
-			trace("[OpenGL] Initialization failed!");
+			trace("[opengl] Initialization failed!");
 			Sys.exit(-1);
 		}
 
-		trace("[OpenGL] Initialized!");
+		trace("[opengl] Initialized!");
 
-		trace("[OpenGL] Vendor: " + glGetString(GL_VENDOR));
-		trace("[OpenGL] Rendering Device: " + glGetString(GL_RENDERER));
-		trace("[OpenGL] Version: " + glGetString(GL_VERSION));
-		trace("[OpenGL] GLSL Version: " + glGetString(GL_SHADING_LANGUAGE_VERSION));
+		trace("[opengl] --------------- INFO ---------------");
+		trace("[opengl] Vendor:             " + glGetString(GL_VENDOR));
+		trace("[opengl] Rendering Device:   " + glGetString(GL_RENDERER));
+		trace("[opengl] Version:            " + glGetString(GL_VERSION));
+		trace("[opengl] GLSL Version:       " + glGetString(GL_SHADING_LANGUAGE_VERSION));
+		trace("[opengl] ------------------------------------");
 	}
 
 	static function framebufferSizeCallback(window:Pointer<GLFWwindow>, width:Int, height:Int)
