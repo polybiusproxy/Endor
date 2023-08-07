@@ -1,7 +1,3 @@
-#if HXCPP_TELEMETRY
-import hxtelemetry.HxTelemetry;
-#end
-
 import graphics.Texture;
 import render.Model;
 import graphics.Sound;

@@ -1,5 +1,9 @@
 package engine;
 
+#if HXCPP_TELEMETRY
+import hxtelemetry.HxTelemetry;
+#end
+
 import render.Shader;
 import render.Model;
 import lib.openal.ALC.ALCcontext;
