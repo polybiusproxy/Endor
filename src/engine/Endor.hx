@@ -26,14 +26,19 @@ class Endor
 	static var device:Pointer<ALCdevice>;
 	static var context:Pointer<ALCcontext>;
 
+	#if HXCPP_TELEMETRY
+	static var hxtConfig:Config;
+	static var hxt:hxtelemetry.HxTelemetry;
+	#end
+
 	public static function init(resolution:Array<Int>, title:String)
 	{
-		/* init telemetry */
 		#if HXCPP_TELEMETRY
-		var hxtConfig = new Config();
+		/* init telemetry */
+		hxtConfig = new Config();
 		hxtConfig.app_name = "Endor";
 
-		var hxt = new hxtelemetry.HxTelemetry(hxtConfig);
+		hxt = new hxtelemetry.HxTelemetry(hxtConfig);
 		#end
 
 		Log.trace = function(data:Dynamic, ?info:PosInfos)
@@ -90,4 +95,11 @@ class Endor
 	{
 		glViewport(0, 0, width, height);
 	}
+
+	#if HXCPP_TELEMETRY		
+	public static function advanceFrame()
+	{
+		hxt.advance_frame();
+	}
+	#end
 }

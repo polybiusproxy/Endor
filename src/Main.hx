@@ -41,7 +41,7 @@ class Main
 		var rectangleShader:Shader = new Shader();
 
 		var rectangle = new Model(vertices, indices, colors, texCoords, rectangleShader);
-		var rectangleTexture:Texture = new Texture(rectangle, "awesomeface.png");
+		var rectangleTexture:Texture = new Texture(rectangle, "tro.png");
 
 		var music:Sound = new Sound("something_about_us.ogg");
 		music.play();
@@ -65,7 +65,7 @@ class Main
 			glfwPollEvents();
 
 			#if HXCPP_TELEMETRY
-			hxt.advance_frame();
+			Endor.advanceFrame();
 			#end
 		}
 	}
