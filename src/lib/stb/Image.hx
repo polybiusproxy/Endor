@@ -12,7 +12,7 @@ typedef ImageData =
 
 @:keep
 @:include("endor_stb_image.h")
-@:buildXml("<include name='E:\\Users\\Win32\\Desktop\\Programming\\Haxe\\Endor\\src\\lib\\stb\\stb.xml'/>")
+@:buildXml("<include name='D:\\dev\\haxe\\Endor\\src\\lib\\stb\\stb.xml'/>")
 extern class Image
 {
 	@:native("endor::stb_image::load")

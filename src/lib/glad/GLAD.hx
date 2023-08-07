@@ -8,7 +8,7 @@ import cpp.NativeArray;
 
 @:keep
 @:include("glad/glad.h")
-@:buildXml("<include name='E:\\Users\\Win32\\Desktop\\Programming\\Haxe\\Endor\\src\\lib\\glad\\glad.xml'/>")
+@:buildXml("<include name='D:\\dev\\haxe\\Endor\\src\\lib\\glad\\glad.xml'/>")
 extern class GLAD
 {
 	static inline var GL_FALSE = 0;

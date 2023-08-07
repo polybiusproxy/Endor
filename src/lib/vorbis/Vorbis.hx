@@ -22,7 +22,7 @@ extern class OggVorbis_File {}
 
 @:keep
 @:include("endor_vorbis.h")
-@:buildXml("<include name='E:\\Users\\Win32\\Desktop\\Programming\\Haxe\\Endor\\src\\lib\\vorbis\\libvorbis.xml'/>")
+@:buildXml("<include name='D:\\dev\\haxe\\Endor\\src\\lib\\vorbis\\libvorbis.xml'/>")
 extern class Vorbis
 {
 	@:native("endor::vorbis::vb_open")

@@ -8,7 +8,7 @@ import haxe.io.BytesData;
 
 @:keep
 @:include("AL/al.h")
-@:buildXml("<include name='E:\\Users\\Win32\\Desktop\\Programming\\Haxe\\Endor\\src\\lib\\openal\\al.xml'/>")
+@:buildXml("<include name='D:\\dev\\haxe\\Endor\\src\\lib\\openal\\al.xml'/>")
 extern class AL
 {
 	static inline var AL_FALSE = 0;

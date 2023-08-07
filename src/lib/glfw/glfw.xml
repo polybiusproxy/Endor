@@ -1,5 +1,5 @@
 <xml>
-    <set name="GLFW_PATH" value="E:/Users/Win32/Desktop/Programming/Haxe/Endor/vendor/glfw"/>
+    <set name="GLFW_PATH" value="D:/dev/haxe/Endor/vendor/glfw"/>
 
     <files id='haxe'>
         <compilerflag value='-DGLFW_INCLUDE_NONE'/>
