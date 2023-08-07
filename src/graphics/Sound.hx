@@ -73,7 +73,7 @@ class Sound
 				-1;
 		}
 
-		trace('[OpenAL] Filename: ${filename} | Channels: ${wav.header.channels} | Sampling rate: ${wav.header.samplingRate}');
+		trace('[OpenAL] Filename: ${filename} | Channels: ${wav.header.channels} | Sampling rate: ${wav.header.samplingRate} Hz');
 
 		alBufferData(buffers[0], format, wav.data.getData(), wav.data.length, wav.header.samplingRate);
 	}

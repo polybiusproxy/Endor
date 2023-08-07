@@ -15,10 +15,6 @@ class Main
 	static function main()
 	{
 		Endor.init([1280, 720], "Endor");
-		
-		#if HXCPP_TELEMETRY
-		var hxt = new hxtelemetry.HxTelemetry();
-		#end
 
 		var vertices:Array<Float> = [
 			 0.5,  0.5, 0.0,
@@ -51,7 +47,7 @@ class Main
 		var rectangle = new Model(vertices, indices, colors, texCoords, rectangleShader);
 		var rectangleTexture:Texture = new Texture(rectangle, "awesomeface.png");
 
-		var music:Sound = new Sound("a_cybers_world.ogg"); // I love Deltarune and Undertale
+		var music:Sound = new Sound("something_about_us.ogg");
 		music.play();
 
 		while (glfwWindowShouldClose(Endor.window) != GLFW_TRUE)

@@ -24,6 +24,14 @@ class Endor
 
 	public static function init(resolution:Array<Int>, title:String)
 	{
+		/* init telemetry */
+		#if HXCPP_TELEMETRY
+		var hxtConfig = new Config();
+		hxtConfig.app_name = "Endor";
+
+		var hxt = new hxtelemetry.HxTelemetry(hxtConfig);
+		#end
+
 		Log.trace = function(data:Dynamic, ?info:PosInfos)
 		{
 			Sys.println("[Endor] " + data);
@@ -55,7 +63,7 @@ class Endor
 			Sys.exit(-1);
 		}
 
-		trace("[OpenAL] Device: " + alcGetString(device, ALC_DEVICE_SPECIFIER));
+		trace("[OpenAL] Device: " + alcGetString(device, ALC_DEFAULT_ALL_DEVICES_SPECIFIER));
 
 		context = alcCreateContext(device, 0);
 		alcMakeContextCurrent(context);
