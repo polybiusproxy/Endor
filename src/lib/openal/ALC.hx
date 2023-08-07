@@ -15,10 +15,11 @@ extern class ALCcontext {}
 
 @:keep
 @:include("AL/alc.h")
-@:buildXml("<include name='E:\\Users\\Win32\\Desktop\\Programming\\Haxe\\Endor\\src\\lib\\openal\\al.xml'/>")
+@:buildXml("<include name='D:\\dev\\haxe\\Endor\\src\\lib\\openal\\al.xml'/>")
 extern class ALC
 {
-	static inline var ALC_DEVICE_SPECIFIER = 0x1005;
+	static inline var ALC_DEVICE_SPECIFIER 				= 0x1005;
+	static inline var ALC_DEFAULT_ALL_DEVICES_SPECIFIER = 0x1012;
 
 	@:native("alcOpenDevice")
 	static function alcOpenDevice(devicename:ConstCharStar):Pointer<ALCdevice>;
