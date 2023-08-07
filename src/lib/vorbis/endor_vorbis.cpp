@@ -2,6 +2,9 @@
 #include <vorbis/vorbisfile.h>
 #include <windows.h>
 
+#define __STDC_FORMAT_MACROS 1
+#include <inttypes.h>
+
 namespace endor
 {
     namespace vorbis
@@ -36,9 +39,9 @@ namespace endor
         Dynamic vb_read(OggVorbis_File vf)
         {
             vorbis_info *vi = ov_info(&vf, -1);
-            size_t dataLen = ov_pcm_total(&vf, -1) * vi->channels * 2;
+            ogg_int64_t dataLen = ov_pcm_total(&vf, -1) * vi->channels * 2;
 
-            printf("[Endor] [libvorbis] Allocating %ld bytes...\n", dataLen);
+            printf("[Endor] [libvorbis] Allocating %" PRIu64 " bytes...\n", dataLen);
 
             unsigned char *rawData = new unsigned char[dataLen];
 
